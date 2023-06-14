@@ -1,24 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import StockExchangeGraph from './components/Stockexchangegraph';
+import Article from './Page/Artical';
+import { Box, Tag } from "@chakra-ui/react";
+import TopStockPage from './components/TopStock';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box className="App">
+   
+     <Tag size="md" colorScheme="blue" borderRadius="full">
+      Technology | Sport | Science
+    </Tag>
+
+      <StockExchangeGraph/>
+    
+    </Box>
   );
 }
 
