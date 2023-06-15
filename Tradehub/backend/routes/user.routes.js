@@ -12,6 +12,14 @@ userRouter.post("/register",async(req,res)=>{
         bcrypt.hash(password, 5, async(err, hash) => {
             if(err){
                 res.status(400).json({error:err.message})
+            }else if(! /^[a-zA-Z ]*$/.test(firstName)){
+                res.json({msg:"Invalid First Name!"})
+            }else if(! /^[a-zA-Z ]*$/.test(lastName)){
+                res.json({msg:"Invalid Last Name!"})
+            }else if(!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)){
+                res.json({msg:"Invalid emailId!"})
+            }else if(!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(password)){
+                res.json({msg:"Password should contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character and minimum legth should be 8!"})
             }else if(userExist){
                     res.json({msg:"Email already exist, please login or signup with another email"})
                 }else{
@@ -46,6 +54,8 @@ userRouter.post("/login",async(req,res)=>{
     }
 })
 
+
+
 module.exports={
     userRouter
-}
+} 
