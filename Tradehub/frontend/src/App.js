@@ -4,16 +4,12 @@ import StockExchangeGraph from './components/Stockexchangegraph';
 import Article from './Page/Artical';
 import { Box, Tag } from "@chakra-ui/react";
 import TopStockPage from './components/TopStock';
+import MainRoute from './Routers/MainRoute';
 
 function App() {
   return (
     <Box className="App">
-   
-     <Tag size="md" colorScheme="blue" borderRadius="full">
-      Technology | Sport | Science
-    </Tag>
-
-      <StockExchangeGraph/>
+   <MainRoute/>
     
     </Box>
   );

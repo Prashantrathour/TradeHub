@@ -410,4 +410,567 @@ const  stockdata=[
       "description": "Gilead Sciences, Inc. discovers, develops, and commercializes therapeutics in the areas of unmet medical needs worldwide."
     }
   ]
-  export default stockdata
+
+
+  const stockdata2=[
+    {
+      "symbol": "AAPL",
+      "companyName": "Apple Inc.",
+      "description": "Apple Inc. designs, manufactures, and markets consumer electronics, computer software, and online services.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "MSFT",
+      "companyName": "Microsoft Corporation",
+      "description": "Microsoft Corporation develops, licenses, and supports software, services, devices, and solutions worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "AMZN",
+      "companyName": "Amazon.com, Inc.",
+      "description": "Amazon.com, Inc. engages in online retail and operates various subsidiaries worldwide.",
+      "industry": "Retail"
+    },
+    {
+      "symbol": "GOOGL",
+      "companyName": "Alphabet Inc.",
+      "description": "Alphabet Inc. provides online advertising services, search engines, and operates as a holding company.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "FB",
+      "companyName": "Meta Platforms Inc.",
+      "description": "Meta Platforms Inc., formerly known as Facebook, operates social networking platforms worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "JPM",
+      "companyName": "JPMorgan Chase & Co.",
+      "description": "JPMorgan Chase & Co. provides various financial services worldwide.",
+      "industry": "Financial Services"
+    },
+    {
+      "symbol": "V",
+      "companyName": "Visa Inc.",
+      "description": "Visa Inc. operates as a payments technology company worldwide.",
+      "industry": "Financial Services"
+    },
+    {
+      "symbol": "WMT",
+      "companyName": "Walmart Inc.",
+      "description": "Walmart Inc. operates retail stores, wholesale clubs, and online retail channels worldwide.",
+      "industry": "Retail"
+    },
+    {
+      "symbol": "PG",
+      "companyName": "Procter & Gamble Company",
+      "description": "Procter & Gamble Company provides branded consumer packaged goods worldwide.",
+      "industry": "Consumer Goods"
+    },
+    {
+      "symbol": "JNJ",
+      "companyName": "Johnson & Johnson",
+      "description": "Johnson & Johnson researches, develops, and manufactures healthcare products worldwide.",
+      "industry": "Healthcare"
+    },
+    {
+      "symbol": "VZ",
+      "companyName": "Verizon Communications Inc.",
+      "description": "Verizon Communications Inc. provides communications, information, and entertainment products and services worldwide.",
+      "industry": "Telecommunication Services"
+    },
+    {
+      "symbol": "T",
+      "companyName": "AT&T Inc.",
+      "description": "AT&T Inc. provides telecommunications, media, and technology services worldwide.",
+      "industry": "Telecommunication Services"
+    },
+    {
+      "symbol": "BAC",
+      "companyName": "Bank of America Corporation",
+      "description": "Bank of America Corporation provides banking and financial products and services worldwide.",
+      "industry": "Financial Services"
+    },
+    {
+      "symbol": "DIS",
+      "companyName": "The Walt Disney Company",
+      "description": "The Walt Disney Company operates as an entertainment company worldwide.",
+      "industry": "Entertainment"
+    },
+    {
+      "symbol": "KO",
+      "companyName": "The Coca-Cola Company",
+      "description": "The Coca-Cola Company manufactures, distributes, and sells nonalcoholic beverages worldwide.",
+      "industry": "Consumer Goods"
+    },
+    {
+      "symbol": "NVDA",
+      "companyName": "NVIDIA Corporation",
+      "description": "NVIDIA Corporation operates as a visual computing company worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "TSLA",
+      "companyName": "Tesla, Inc.",
+      "description": "Tesla, Inc. designs, develops, manufactures, and sells electric vehicles and energy storage products.",
+      "industry": "Automotive"
+    },
+    {
+      "symbol": "PFE",
+      "companyName": "Pfizer Inc.",
+      "description": "Pfizer Inc. develops, manufactures, and sells healthcare products worldwide.",
+      "industry": "Healthcare"
+    },
+    {
+      "symbol": "NFLX",
+      "companyName": "Netflix, Inc.",
+      "description": "Netflix, Inc. provides subscription streaming entertainment services worldwide.",
+      "industry": "Entertainment"
+    },
+    {
+      "symbol": "GOOG",
+      "companyName": "Alphabet Inc.",
+      "description": "Alphabet Inc. provides online advertising services, search engines, and operates as a holding company.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "XOM",
+      "companyName": "Exxon Mobil Corporation",
+      "description": "Exxon Mobil Corporation explores for and produces crude oil and natural gas worldwide.",
+      "industry": "Energy"
+    },
+    {
+      "symbol": "CSCO",
+      "companyName": "Cisco Systems, Inc.",
+      "description": "Cisco Systems, Inc. designs, manufactures, and sells networking, communications, and information technology products.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "INTC",
+      "companyName": "Intel Corporation",
+      "description": "Intel Corporation designs, manufactures, and sells computer components and related products worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "INTU",
+      "companyName": "Intuit Inc.",
+      "description": "Intuit Inc. provides financial management, accounting, and tax preparation software products and related services.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "UNH",
+      "companyName": "UnitedHealth Group Incorporated",
+      "description": "UnitedHealth Group Incorporated operates as a diversified health care company worldwide.",
+      "industry": "Healthcare"
+    },
+    {
+      "symbol": "BA",
+      "companyName": "The Boeing Company",
+      "description": "The Boeing Company designs, manufactures, and sells aerospace and defense products worldwide.",
+      "industry": "Aerospace & Defense"
+    },
+    {
+      "symbol": "CRM",
+      "companyName": "Salesforce.com, Inc.",
+      "description": "Salesforce.com, Inc. provides enterprise cloud computing solutions worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "C",
+      "companyName": "Citigroup Inc.",
+      "description": "Citigroup Inc. provides various financial products and services worldwide.",
+      "industry": "Financial Services"
+    },
+    {
+      "symbol": "MCD",
+      "companyName": "McDonald's Corporation",
+      "description": "McDonald's Corporation operates and franchises McDonald's restaurants worldwide.",
+      "industry": "Restaurant"
+    },
+    {
+      "symbol": "PGR",
+      "companyName": "The Progressive Corporation",
+      "description": "The Progressive Corporation provides personal and commercial auto insurance, residential property insurance, and other specialty property-casualty insurance and related services.",
+      "industry": "Insurance"
+    },
+    {
+      "symbol": "ADBE",
+      "companyName": "Adobe Inc.",
+      "description": "Adobe Inc. operates as a diversified software company worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "HD",
+      "companyName": "The Home Depot, Inc.",
+      "description": "The Home Depot, Inc. operates as a home improvement retailer worldwide.",
+      "industry": "Retail"
+    },
+    {
+      "symbol": "VOD",
+      "companyName": "Vodafone Group Plc",
+      "description": "Vodafone Group Plc provides telecommunications services in Europe, Africa, the Middle East, and the Asia Pacific.",
+      "industry": "Telecommunication Services"
+    },
+    {
+      "symbol": "XRX",
+      "companyName": "Xerox Holdings Corporation",
+      "description": "Xerox Holdings Corporation designs, develops, and sells document management systems and solutions worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "PYPL",
+      "companyName": "PayPal Holdings, Inc.",
+      "description": "PayPal Holdings, Inc. operates as a technology platform and digital payments company worldwide.",
+      "industry": "Financial Services"
+    },
+    {
+      "symbol": "NKE",
+      "companyName": "NIKE, Inc.",
+      "description": "NIKE, Inc. designs, develops, markets, and sells athletic footwear, apparel, equipment, and accessories worldwide.",
+      "industry": "Consumer Goods"
+    },
+    {
+      "symbol": "IBM",
+      "companyName": "International Business Machines Corporation",
+      "description": "International Business Machines Corporation provides integrated solutions and services worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "ORCL",
+      "companyName": "Oracle Corporation",
+      "description": "Oracle Corporation provides products and services that address various aspects of corporate information technology environments worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "HON",
+      "companyName": "Honeywell International Inc.",
+      "description": "Honeywell International Inc. operates as a diversified technology and manufacturing company worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "PEP",
+      "companyName": "PepsiCo, Inc.",
+      "description": "PepsiCo, Inc. operates as a food and beverage company worldwide.",
+      "industry": "Consumer Goods"
+    },
+    {
+      "symbol": "CMCSA",
+      "companyName": "Comcast Corporation",
+      "description": "Comcast Corporation operates as a media and technology company worldwide.",
+      "industry": "Entertainment"
+    },
+    {
+      "symbol": "PDD",
+      "companyName": "Pinduoduo Inc.",
+      "description": "Pinduoduo Inc. operates as an e-commerce platform in the People's Republic of China.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "TMO",
+      "companyName": "Thermo Fisher Scientific Inc.",
+      "description": "Thermo Fisher Scientific Inc. provides scientific research services worldwide.",
+      "industry": "Healthcare"
+    },
+    {
+      "symbol": "MELI",
+      "companyName": "MercadoLibre, Inc.",
+      "description": "MercadoLibre, Inc. operates online commerce platforms in Latin America.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "ABT",
+      "companyName": "Abbott Laboratories",
+      "description": "Abbott Laboratories discovers, develops, manufactures, and sells health care products worldwide.",
+      "industry": "Healthcare"
+    },
+    {
+      "symbol": "ABBV",
+      "companyName": "AbbVie Inc.",
+      "description": "AbbVie Inc. discovers, develops, manufactures, and sells pharmaceuticals worldwide.",
+      "industry": "Healthcare"
+    },
+    {
+      "symbol": "CAT",
+      "companyName": "Caterpillar Inc.",
+      "description": "Caterpillar Inc. manufactures and sells construction and mining equipment, diesel and natural gas engines, and industrial gas turbines worldwide.",
+      "industry": "Industrial Goods"
+    },
+    {
+      "symbol": "BAIDU",
+      "companyName": "Baidu, Inc.",
+      "description": "Baidu, Inc. provides internet search services and online marketing solutions in China and internationally.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "MRK",
+      "companyName": "Merck & Co., Inc.",
+      "description": "Merck & Co., Inc. provides various health solutions through its prescription medicines, vaccines, biologic therapies, animal health, and consumer care products worldwide.",
+      "industry": "Healthcare"
+    },
+    {
+      "symbol": "NVAX",
+      "companyName": "Novavax, Inc.",
+      "description": "Novavax, Inc. focuses on the discovery, development, and commercialization of vaccines to prevent serious infectious diseases worldwide.",
+      "industry": "Healthcare"
+    },
+    {
+      "symbol": "ABEV",
+      "companyName": "Ambev S.A.",
+      "description": "Ambev S.A., through its subsidiaries, produces, distributes, and sells beer, draft beer, soft drinks, other non-alcoholic beverages, malt, and food products in the Americas.",
+      "industry": "Consumer Goods"
+    },
+    {
+      "symbol": "CVS",
+      "companyName": "CVS Health Corporation",
+      "description": "CVS Health Corporation provides health services and plans in the United States.",
+      "industry": "Healthcare"
+    },
+    {
+      "symbol": "CHL",
+      "companyName": "China Mobile Limited",
+      "description": "China Mobile Limited provides mobile telecommunications and related services in Mainland China and Hong Kong.",
+      "industry": "Telecommunication Services"
+    },
+    {
+      "symbol": "BMY",
+      "companyName": "Bristol-Myers Squibb Company",
+      "description": "Bristol-Myers Squibb Company discovers, develops, licenses, manufactures, markets, distributes, and sells biopharmaceutical products worldwide.",
+      "industry": "Healthcare"
+    },
+    {
+      "symbol": "TSM",
+      "companyName": "Taiwan Semiconductor Manufacturing Company Limited",
+      "description": "Taiwan Semiconductor Manufacturing Company Limited engages in the computer-aided design, manufacture, packaging, testing, sale, and marketing of integrated circuits, color filters, and other semiconductor devices.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "LMT",
+      "companyName": "Lockheed Martin Corporation",
+      "description": "Lockheed Martin Corporation engages in the research, design, development, manufacture, integration, and sustainment of technology systems, products, and services worldwide.",
+      "industry": "Aerospace & Defense"
+    },
+    {
+      "symbol": "AZN",
+      "companyName": "AstraZeneca PLC",
+      "description": "AstraZeneca PLC discovers, develops, and commercializes prescription medicines in the areas of oncology, cardiovascular, renal and metabolism, respiratory, infection, neuroscience, and gastrointestinal worldwide.",
+      "industry": "Healthcare"
+    },
+    {
+      "symbol": "PDD",
+      "companyName": "Pinduoduo Inc.",
+      "description": "Pinduoduo Inc. operates as an e-commerce platform in the People's Republic of China.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "F",
+      "companyName": "Ford Motor Company",
+      "description": "Ford Motor Company designs, manufactures, markets, and services a range of Ford cars, trucks, sport utility vehicles, electrified vehicles, and Lincoln luxury vehicles worldwide.",
+      "industry": "Automotive"
+    },
+    {
+      "symbol": "MMM",
+      "companyName": "3M Company",
+      "description": "3M Company develops, manufactures, and markets various products worldwide.",
+      "industry": "Industrial Goods"
+    },
+    {
+      "symbol": "LVS",
+      "companyName": "Las Vegas Sands Corp.",
+      "description": "Las Vegas Sands Corp., together with its subsidiaries, develops, owns, and operates integrated resorts worldwide.",
+      "industry": "Entertainment"
+    },
+    {
+      "symbol": "GM",
+      "companyName": "General Motors Company",
+      "description": "General Motors Company designs, builds, and sells cars, trucks, crossovers, and automobile parts worldwide.",
+      "industry": "Automotive"
+    },
+    {
+      "symbol": "WFC",
+      "companyName": "Wells Fargo & Company",
+      "description": "Wells Fargo & Company provides banking, investment, mortgage, and consumer and commercial finance products and services worldwide.",
+      "industry": "Financial Services"
+    },
+    {
+      "symbol": "BP",
+      "companyName": "BP p.l.c.",
+      "description": "BP p.l.c. engages in the energy business worldwide.",
+      "industry": "Energy"
+    },
+    {
+      "symbol": "CVX",
+      "companyName": "Chevron Corporation",
+      "description": "Chevron Corporation engages in integrated energy, chemicals, and petroleum operations worldwide.",
+      "industry": "Energy"
+    },
+    {
+      "symbol": "NVS",
+      "companyName": "Novartis AG",
+      "description": "Novartis AG researches, develops, manufactures, and markets healthcare products worldwide.",
+      "industry": "Healthcare"
+    },
+    {
+      "symbol": "KO",
+      "companyName": "The Coca-Cola Company",
+      "description": "The Coca-Cola Company manufactures, markets, and sells nonalcoholic beverages worldwide.",
+      "industry": "Consumer Goods"
+    },
+    {
+      "symbol": "GE",
+      "companyName": "General Electric Company",
+      "description": "General Electric Company operates as a high-tech industrial company worldwide.",
+      "industry": "Industrial Goods"
+    },
+    {
+      "symbol": "BP",
+      "companyName": "BP p.l.c.",
+      "description": "BP p.l.c. engages in the energy business worldwide.",
+      "industry": "Energy"
+    },
+    {
+      "symbol": "SNAP",
+      "companyName": "Snap Inc.",
+      "description": "Snap Inc. operates as a camera company worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "GS",
+      "companyName": "The Goldman Sachs Group, Inc.",
+      "description": "The Goldman Sachs Group, Inc. operates as an investment banking, securities, and investment management company worldwide.",
+      "industry": "Financial Services"
+    },
+    {
+      "symbol": "GILD",
+      "companyName": "Gilead Sciences, Inc.",
+      "description": "Gilead Sciences, Inc. discovers, develops, manufactures, and commercializes medicines in the areas of unmet medical needs worldwide.",
+      "industry": "Healthcare"
+    },
+    {
+      "symbol": "SAP",
+      "companyName": "SAP SE",
+      "description": "SAP SE operates as an enterprise application software company worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "COST",
+      "companyName": "Costco Wholesale Corporation",
+      "description": "Costco Wholesale Corporation engages in the operation of membership warehouses worldwide.",
+      "industry": "Retail"
+    },
+    {
+      "symbol": "PNC",
+      "companyName": "The PNC Financial Services Group, Inc.",
+      "description": "The PNC Financial Services Group, Inc. operates as a diversified financial services company in the United States.",
+      "industry": "Financial Services"
+    },
+    {
+      "symbol": "CCL",
+      "companyName": "Carnival Corporation & plc",
+      "description": "Carnival Corporation & plc operates as a leisure travel company worldwide.",
+      "industry": "Travel & Leisure"
+    },
+    {
+      "symbol": "AAL",
+      "companyName": "American Airlines Group Inc.",
+      "description": "American Airlines Group Inc., through its subsidiaries, operates as a network air carrier.",
+      "industry": "Transportation"
+    },
+    {
+      "symbol": "AMD",
+      "companyName": "Advanced Micro Devices, Inc.",
+      "description": "Advanced Micro Devices, Inc. operates as a semiconductor company worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "PEP",
+      "companyName": "PepsiCo, Inc.",
+      "description": "PepsiCo, Inc. operates as a food and beverage company worldwide.",
+      "industry": "Consumer Goods"
+    },
+    {
+      "symbol": "EA",
+      "companyName": "Electronic Arts Inc.",
+      "description": "Electronic Arts Inc. develops, markets, publishes, and distributes games, content, and services for game consoles, personal computers, mobile phones, and tablets worldwide.",
+      "industry": "Entertainment"
+    },
+    {
+      "symbol": "TXN",
+      "companyName": "Texas Instruments Incorporated",
+      "description": "Texas Instruments Incorporated designs, manufactures, and sells semiconductors to electronics designers and manufacturers worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "EXC",
+      "companyName": "Exelon Corporation",
+      "description": "Exelon Corporation engages in energy generation and delivery businesses in the United States and Canada.",
+      "industry": "Energy"
+    },
+    {
+      "symbol": "SNE",
+      "companyName": "Sony Corporation",
+      "description": "Sony Corporation designs, develops, produces, and sells electronic equipment, instruments, and devices for consumer, professional, and industrial markets worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "VZ",
+      "companyName": "Verizon Communications Inc.",
+      "description": "Verizon Communications Inc. offers communications, information, and entertainment products and services to consumers, businesses, and governmental entities worldwide.",
+      "industry": "Telecommunication Services"
+    },
+    {
+      "symbol": "WMT",
+      "companyName": "Walmart Inc.",
+      "description": "Walmart Inc. engages in the retail and wholesale operations in various formats worldwide.",
+      "industry": "Retail"
+    },
+    {
+      "symbol": "AXP",
+      "companyName": "American Express Company",
+      "description": "American Express Company, together with its subsidiaries, provides charge and credit payment card products, and travel-related services worldwide.",
+      "industry": "Financial Services"
+    },
+    {
+      "symbol": "BABA",
+      "companyName": "Alibaba Group Holding Limited",
+      "description": "Alibaba Group Holding Limited, through its subsidiaries, provides online and mobile commerce businesses in the People's Republic of China and internationally.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "DIS",
+      "companyName": "The Walt Disney Company",
+      "description": "The Walt Disney Company, together with its subsidiaries, operates as an entertainment company worldwide.",
+      "industry": "Entertainment"
+    },
+    {
+      "symbol": "ACN",
+      "companyName": "Accenture plc",
+      "description": "Accenture plc provides consulting, technology, and outsourcing services in Ireland and internationally.",
+      "industry": "Business Services"
+    },
+    {
+      "symbol": "CHTR",
+      "companyName": "Charter Communications, Inc.",
+      "description": "Charter Communications, Inc., through its subsidiaries, provides cable services in the United States.",
+      "industry": "Telecommunication Services"
+    },
+    {
+      "symbol": "V",
+      "companyName": "Visa Inc.",
+      "description": "Visa Inc. operates as a payments technology company worldwide.",
+      "industry": "Financial Services"
+    },
+    {
+      "symbol": "NOW",
+      "companyName": "ServiceNow, Inc.",
+      "description": "ServiceNow, Inc. provides enterprise cloud computing solutions that define, structure, manage, and automate services for enterprises worldwide.",
+      "industry": "Technology"
+    },
+    {
+      "symbol": "SQ",
+      "companyName": "Square, Inc.",
+      "description": "Square, Inc. provides payment and point-of-sale solutions in the United States and internationally.",
+      "industry": "Financial Services"
+    }
+  ]
+  
+  export {stockdata,stockdata2}

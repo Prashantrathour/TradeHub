@@ -10,8 +10,9 @@ const Article = ({company}) => {
     const fetchArticle = async () => {
       try {
         const response = await axios.get(
-          `https://newsapi.org/v2/everything?q=${company}&from=2023-06-12&limit=5&apiKey=a99fb85ded474d65a10074ed4d1b8fae` // Replace with your API endpoint
+          `https://newsapi.org/v2/everything?q=${company}&from=2023-06-13&apiKey=10050605ad694f1f9108a5e7f52e779c` 
         );
+        console.log(response.data)
         setArticle(response.data.articles);
        
       } catch (error) {
