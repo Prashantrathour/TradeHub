@@ -149,7 +149,7 @@ function StockExchangeGraph() {
       </Flex>
       <Box m="10px">
         <Heading as="h4">Read Articles</Heading>
-        <Article company={companyName} />
+        {/* <Article company={companyName} /> */}
       </Box>
     </Box>
   );
