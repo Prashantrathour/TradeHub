@@ -1,17 +1,16 @@
-import logo from './logo.svg';
+import { ChakraProvider } from '@chakra-ui/react';
 import './App.css';
-import StockExchangeGraph from './components/Stockexchangegraph';
-import Article from './Page/Artical';
-import { Box, Tag } from "@chakra-ui/react";
-import TopStockPage from './components/TopStock';
-import MainRoute from './Routers/MainRoute';
+import Navbar from './components/Navbar';
+import Middle from './components/Middle';
 
 function App() {
   return (
-    <Box className="App">
-   <MainRoute/>
-    
-    </Box>
+    <div className="App">
+      <ChakraProvider>
+        <Navbar/>
+        <Middle/>
+      </ChakraProvider>
+    </div>
   );
 }
 
