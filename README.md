@@ -39,7 +39,7 @@ To run this project locally, make sure you have the following prerequisites inst
 - Prashant Rathour
 - Devshruti
 - Shahid Raza
-- Akash Chourasia
+- Akash Chaurasiya
 # Objectives
 The main objectives of this project are:
 
