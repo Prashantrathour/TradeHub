@@ -13,7 +13,7 @@ const Article = ({company}) => {
           `https://newsapi.org/v2/everything?q=${company}&from=2023-06-13&apiKey=10050605ad694f1f9108a5e7f52e779c` 
         );
         console.log(response.data)
-        setArticle(response.data.articles);
+        setArticle(response.data?.articles);
        
       } catch (error) {
         console.error(error);
@@ -31,7 +31,7 @@ const Article = ({company}) => {
     <Box>
 
         {
-    article.map((article)=><ArticlePage {...article}/>)
+    article?.map((article)=><ArticlePage {...article}/>)
             
         }
     </Box>
