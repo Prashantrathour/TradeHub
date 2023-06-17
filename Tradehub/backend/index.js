@@ -1,14 +1,18 @@
 const express = require("express");
 const { connection } = require("./db");
 const { userRouter } = require("./routes/user.routes")
-const cors = require("cors")
+const { stockRouter } = require("./routes/stock.routes");
+const { dematRouter } = require("./routes/demat.routes");
+const cors = require("cors");
 require("dotenv").config()
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 
+app.use("/stocks", stockRouter)
 app.use("/users", userRouter)
+app.use("/demat",dematRouter)
 
 app.listen(process.env.port,async()=>{
     try{
