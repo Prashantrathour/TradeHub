@@ -82,19 +82,23 @@
         margin-left: 0;
         position: static;
         justify-content: center;
+        
     }
 
     .space {
-        width: 100%;
+        // width: 100%;
+        // display: flex;
+        // flex-direction: column;
+        display: none;
     }
 
     .footgrid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
 
     .downsection {
         width: 100%;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 
