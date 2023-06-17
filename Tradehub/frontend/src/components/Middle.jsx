@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Divider, Text, css, Button, Icon } from '@chakra-ui/react';
+import { Box, Divider, Text, css, Button, Icon, Heading } from '@chakra-ui/react';
 import { AiFillWarning, AiOutlineStar } from 'react-icons/ai';
 import Image1 from '../images/product_hero_crypto__6ef026ace9c7f7cf1047e15b98117523.png';
 import { NavLink } from 'react-router-dom';
@@ -99,6 +99,10 @@ const Middle = () => {
         </Box>
       </Box>
       <Text bg="#7fff00">Stocks & funds offered through Tradehub Financial. Other fees may apply. See our Fee Schedule for more details.</Text>
+      <Box backgroundSize={"cover"} overflow={"hidden"} margin={"10x"} bgImage={"https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/intro-background@1x__a7e1489efad180ee10a6e4d50c56d857.png"}>
+<Heading>Join me</Heading>
+<Box height={"100vh"}></Box>
+      </Box>
     </div>
   );
 };

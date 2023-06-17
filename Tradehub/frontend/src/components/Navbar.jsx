@@ -135,12 +135,11 @@ const NavButton = ({ to, children }) => (
 const AuthButtons = () => (
   <Box>
     <Flex alignItems="center" boxSizing={"content-box"} margin={"auto"}>
+      <NavLink to={"/login"}>
       <Button variant="ghost" colorScheme="white" mr={2}>
         Login
       </Button>
-      <Button colorScheme="white" mr={2}>
-        Sign Up
-      </Button>
+    </NavLink>
       <Button colorScheme="orange">Create Demat Account</Button>
     </Flex>
   </Box>
@@ -148,12 +147,11 @@ const AuthButtons = () => (
 const AuthButtonsmob = () => (
   <Box alignItems="center" p="5px" margin={"auto"}>
     <Flex>
+    <NavLink to={"/login"}>
       <Button variant="ghost" colorScheme="white" mr={2}>
         Login
       </Button>
-      <Button colorScheme="white" mr={2}>
-        Sign Up
-      </Button>
+     </NavLink>
     </Flex>
     <Box>
       <Button

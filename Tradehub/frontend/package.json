@@ -27,6 +27,7 @@
     "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
     "recharts": "^2.7.0",
+    "sass": "^1.63.4",
     "thunk": "^0.0.1",
     "victory": "^36.6.11",
     "web-vitals": "^2.1.4"
