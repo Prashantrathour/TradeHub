@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 
 import MainRoute from "./Routers/MainRoute";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
 
         <Box mt="55px">
           <MainRoute />
+          <Footer/>
         </Box>
       </ChakraProvider>
     </div>

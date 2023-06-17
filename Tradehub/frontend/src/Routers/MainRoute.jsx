@@ -8,6 +8,8 @@ import Middle from "../components/Middle";
 import SupportPage from "../Page/Supportpage";
 import Learn from "../Page/Learn";
 import Snacks from "../Page/Snacksarticals";
+import Login from "../Page/Login";
+import Signup from "../Page/Signup";
 
 
 
@@ -16,6 +18,8 @@ function MainRoute() {
     <Routes>
       <Route path="/" element={<Middle />} />
       <Route path="/invest" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="/support" element={<SupportPage />} />
       <Route path="/learn" element={<Learn />} />
       <Route path="/snacks" element={< Snacks/>} />
