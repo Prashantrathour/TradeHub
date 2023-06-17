@@ -1,38 +1,38 @@
 const mongoose = require('mongoose');
 
 const stockSchema = new mongoose.Schema({
-  symbol: {
+  Symbol: {
     type: String,
     required: true
   },
-  companyName: {
+  Date: {
     type: String,
     required: true
   },
-  marketCap: {
-    type: String,
-    required: true
-  },
-  stockChange: {
-    type: String,
-    required: true
-  },
-  volume: {
-    type: String,
-    required: true
-  },
-  PERation: {
+  Open: {
     type: Number,
     required: true
   },
-  industry: {
-    type: String,
+  High: {
+    type: Number,
     required: true
   },
-  logoUrl: {
-    type: String,
+  Low: {
+    type: Number,
     required: true
-  }
+  },
+  Close: {
+    type: Number,
+    required: true
+  },
+  Volume: {
+    type: Number,
+    required: true
+  },
+  // logoUrl: {
+  //   type: String,
+  //   required: true
+  // }
 });
-const stockmodel= mongoose.model('stocks', stockSchema);
-module.exports ={ stockmodel}
+const StockModel= mongoose.model('stocks', stockSchema);
+module.exports ={ StockModel}

@@ -40,7 +40,7 @@ userRouter.post("/login",async(req,res)=>{
         if(user){
             bcrypt.compare(password, user.password,(err,result)=>{
                 if(result){
-                    let token = jwt.sign({userID:user._id,user:user.firstName}, process.env.secret)
+                    var token = jwt.sign({userID:user._id,user:user.firstName}, process.env.secret)
                     res.json({msg:"Logged In!", token})
                 }else{
                     res.json({msg:"Wrong Credentials"})
@@ -55,6 +55,10 @@ userRouter.post("/login",async(req,res)=>{
 })
 
 
+userRouter.post("/logout", (req, res) => {
+     res.clearCookie("token");
+    res.json({ msg: "Logged out successfully" });
+  });
 
 module.exports={
     userRouter
