@@ -1,0 +1,135 @@
+
+.footer{
+    margin-top: 10px;
+    border: 1px solid black;
+    // background-color: aqua;
+    height: 90px;
+   
+    .verticle{
+        // border: 1px solid red;
+          position: absolute;
+        border-left: 1px solid black;
+            height: 850px;
+            //   right: 50%;
+            bottom: -0.5px;
+            position: sticky;
+           
+            
+        //   position: sticky;
+          margin-left: 50%;
+         
+         
+          
+    }
+    .foottop{
+        margin-left: 20px;
+        display: flex;
+        
+        .follow{
+             margin-left: 90px;
+            display: flex;
+            position: absolute;
+            left: 50%;
+        }
+        .space{
+            //  border: 1px solid yellow;
+             width: 300%;
+        }
+        a{
+            color: black;
+        }
+    }
+}
+.downsection{
+    // border: 1px solid yellow;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+     width: 55%;
+.footgrid{
+    
+    li{
+        list-style: none;
+        margin-top: 10px;
+    }
+    .disf{
+        display: flex;
+    }
+    
+}
+.fix {
+    position: absolute;
+    left: 52%;
+}
+}
+
+/* For screens smaller than 600px */
+@media screen and (max-width: 600px) {
+    .footer {
+        height: auto;
+    }
+
+    .verticle {
+        display: none;
+    }
+
+    .foottop {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    .follow {
+        margin-left: 0;
+        position: static;
+        justify-content: center;
+    }
+
+    .space {
+        width: 100%;
+    }
+
+    .footgrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .downsection {
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* For screens larger than 600px */
+@media screen and (min-width: 601px) {
+    .footer {
+        height: 90px;
+    }
+
+    .verticle {
+        display: block;
+    }
+
+    .foottop {
+        flex-direction: row;
+        align-items: flex-start;
+        margin-left: 20px;
+    }
+
+    .follow {
+        margin-left: 90px;
+        position: absolute;
+        left: 50%;
+    }
+
+    .space {
+        width: 50%;
+    }
+
+    .footgrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .downsection {
+        width: 55%;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
