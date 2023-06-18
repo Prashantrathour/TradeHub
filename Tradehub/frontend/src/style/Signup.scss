@@ -1,0 +1,186 @@
+#signup.signup {
+    display: grid;
+    grid-template-columns: 49% 49%;
+    box-sizing: border-box;
+
+    .signup-mid {
+        display: none;
+        background-color: rgb(0, 95, 50);
+    }
+
+    .signup-left {
+        background: rgb(130, 200, 210);
+        padding: 60px 64px 36px;
+        display: grid;
+        gap: 20px;
+        overflow: hidden;
+
+        .heading {
+            h2 {
+                font-size: 50px;
+                padding: 50px 0;
+                letter-spacing: 3px;
+                font-weight: 600;
+            }
+        }
+
+        .bottom-rocket {
+
+            img {
+                // width: 100%;
+                height: 350px;
+                object-fit: contain;
+
+            }
+        }
+    }
+
+    .signup-right {
+        .signup-form {
+            display: grid;
+            position: relative;
+            padding: 40px 20px;
+
+            .firstline {
+                margin-top: 20px;
+                padding: 30px;
+                // text-align: center;
+                font-weight: 400;
+            }
+
+            .form {
+                margin-top: 20px;
+                height: 90%;
+                overflow-y: scroll;
+                border-bottom: 1px solid;
+
+                form {
+                    display: grid;
+                    gap: 10px;
+
+                    .top {
+                        display: grid;
+                        gap: 20px;
+                        padding: 10px 50px;
+                        margin-top: 20px;
+
+                        .signup-para {
+                            margin-top: 20px;
+                            margin-bottom: 30px;
+                        }
+
+                        .signup-child {
+                            display: grid;
+                            grid-template-columns: 45% 45%;
+                            gap: 10px;
+                            justify-content: space-between;
+                        }
+
+                        input {
+                            padding: 20px 12px;
+                            width: 100%;
+                            background-color: rgb(248, 248, 248);
+                            border: none;
+                        }
+                    }
+
+                    .continue-btn-div {
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        margin-top: 20px;
+
+                        // width: 100%;
+                        .continue-btn {
+                            padding: 10px 20px;
+                            border-radius: 15px;
+                            background-color: black;
+                            color: white;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 600px) {
+
+    #signup.signup {
+        grid-template-columns: 100%;
+
+        .signup-left {
+            display: none;
+        }
+
+        .signup-mid {
+            display: block;
+            color: rgb(195, 245, 60);
+            padding: 0 20px;
+            display: grid;
+            gap: 10px;
+
+            img {
+                width: 80%;
+                // height: 80%;
+                object-fit: contain;
+                padding-left: 10px;
+            }
+
+            .mid-para {
+                p {
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+        .signup-right {
+            .signup-form {
+                .firstline {
+                    padding: 0 5px;
+                    font-weight: 400;
+                    font-size: 14px;
+                }
+
+                position: static;
+
+                .form {
+                    height: 100%;
+                    border-bottom: none;
+
+                    form {
+                        .top {
+                            padding: 10px;
+
+                            .signup-child {
+                                grid-template-columns: 100%;
+                            }
+
+                            .signup-para {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    .continue-btn-div {
+                        position: static !important;
+                        margin-top: 5px;
+
+                        .continue-btn {
+                            width: 100%;
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+
+}

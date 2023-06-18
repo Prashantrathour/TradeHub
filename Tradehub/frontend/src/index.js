@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import{BrowserRouter}from "react-router-dom"
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <BrowserRouter>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+=======
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -11,6 +26,7 @@ root.render(
     <ChakraProvider>
       <App />
     </ChakraProvider>
+>>>>>>> 4ad7740ce4e71f40cabd0761dd5d83b6654e2adf
   </BrowserRouter>
 );
 
