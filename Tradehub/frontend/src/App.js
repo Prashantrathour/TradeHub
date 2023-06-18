@@ -8,6 +8,10 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <div className="App">
+
+      
+    
+
       <ChakraProvider>
         <Navbar />
 
@@ -16,6 +20,7 @@ function App() {
           <Footer/>
         </Box>
       </ChakraProvider>
+
     </div>
   );
 }

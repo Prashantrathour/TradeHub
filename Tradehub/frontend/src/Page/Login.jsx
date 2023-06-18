@@ -49,12 +49,11 @@
 //     </div>
 //   );
 // }
-import React, { useState } from "react";
-import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Image, Input, Link, Text, useToast } from "@chakra-ui/react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React from "react";
+import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Image, Input, Link, Text } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 import { FaLock, FaUser, FaQuestionCircle } from "react-icons/fa";
 import { RiAccountPinBoxLine } from "react-icons/ri";
-import axios from "axios";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -127,14 +126,14 @@ export default function Login() {
             <FormLabel>Email</FormLabel>
             <Flex align="center">
               <FaUser size={18} color="gray.400" mr={2} />
-              <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input type="email" />
             </Flex>
           </FormControl>
           <FormControl id="password" mb={4}>
             <FormLabel>Password</FormLabel>
             <Flex align="center">
               <FaLock size={18} color="gray.400" mr={2} />
-              <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <Input type="password" />
             </Flex>
           </FormControl>
           <Flex align="center" mb={4}>
@@ -151,7 +150,7 @@ export default function Login() {
               Forget your Email Address?
             </Link>
           </Flex>
-          <Button colorScheme="blue" size="lg" width="full" mb={4} onClick={handleSubmit}>
+          <Button colorScheme="blue" size="lg" width="full" mb={4}>
             Log In
           </Button>
           <Text textAlign="center">
