@@ -1,9 +1,15 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 import "../Page/style/Signup.scss";
 import { useToast } from "@chakra-ui/react";
 import { warning } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+
+import React from "react";
+
+import "../style/Signup.scss";
+
 
 export default function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -144,6 +150,7 @@ export default function Signup() {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
+
                 <div className="signup-para2">
                   <p>
                     By continuing, you agree to the Robinhood User Account
@@ -163,3 +170,4 @@ export default function Signup() {
     </div>
   );
 }
+

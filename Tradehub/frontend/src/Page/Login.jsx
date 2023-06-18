@@ -1,60 +1,12 @@
-// import React from "react";
-// import "../Page/style/Login.scss";
-// import { NavLink } from "react-router-dom";
 
 
-// export default function Login() {
-//   return (
-//     <div className="main" id="main">
-//       <div className="child1">
-//         <img
-//           src="https://cdn.robinhood.com/assets/generated_assets/webapp/632fcb3e7ed928b2a960f3e003d10b44.jpg"
-//           alt="oso"
-//         />
-//       </div>
-
-//       <div className="robin">
-//         <h4 className="robinhood">Login To Robinhood</h4>
-//         <div className="form">
-//           <form action="">
-//             <div className="form-child">
-//               <label htmlFor="name"> Email </label>
-//               <input className="email" type="text" name="email" />
-//             </div>
-//             <div className="form-child">
-//               <label htmlFor="password"> Password </label>
-//               <input className="password" type="password" name="password" />
-//             </div>
-//             <div className="form-child1">
-//               <input type="checkbox" />
-//               <label htmlFor="">
-//                 <span> Keep me logged in for up to 30 days </span>
-//               </label>
-//             </div>
-
-//             <div className="form-child">
-//               <strong>Forget your Password?</strong>
-//               <strong>Forget your Email Address?</strong>
-//             </div>
-//             <button className="button">Log In</button>
-//           </form>
-//         </div>
-//         <p>
-//           Not in Robinhood?
-//           <strong>
-//             <NavLink to="/signup">create an account</NavLink>
-//           </strong>
-//         </p>
-//       </div>
-//     </div>
-//   );
-// }
 import React, { useState } from "react";
 import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Image, Input, Link, Text, useToast } from "@chakra-ui/react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaLock, FaUser, FaQuestionCircle } from "react-icons/fa";
 import { RiAccountPinBoxLine } from "react-icons/ri";
 import axios from "axios";
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -101,6 +53,7 @@ export default function Login() {
   };
 
   return (
+
     <Flex
       direction={{ base: "column-reverse", md: "row" }}
       align="center"
@@ -175,6 +128,7 @@ export default function Login() {
         </Box>
       </Flex>
     </Flex>
+
   );
 }
 
