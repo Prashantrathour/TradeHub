@@ -35,4 +35,5 @@ const stockSchema = new mongoose.Schema({
   // }
 });
 const StockModel= mongoose.model('stocks', stockSchema);
-module.exports ={ StockModel}
+const allStockModel= mongoose.model('allstocks', stockSchema);
+module.exports ={ StockModel,allStockModel}

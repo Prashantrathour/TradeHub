@@ -1,30 +1,40 @@
 const mongoose = require("mongoose")
 
 const dematSchema = new mongoose.Schema({
-  accountNumber: String,
+  demateAccountNumber: String,
   accountHolderName: String,
   balance: Number,
+  email:String,
+  mobilenumber:Number,
+  user:String,
+  userID:String,
   holdings: [
     {
       stockSymbol: String,
       quantity: Number,
-      averagePrice: Number
+      averagePrice:Number
     }
   ],
   transactions: [
     {
       transactionId: mongoose.Types.ObjectId,
       date: Date,
-      type: String,
+      
       stockSymbol: String,
       quantity: Number,
       price: Number,
       totalAmount: Number
     }
-  ]
+  ],
+    bankDetails:[{
+      bankName: String,
+      accountNumber: String,
+      branch: String,
+      IFSC: String
+    }]
 });
 
-// Helper method to update the balance and add a new transaction
+
 dematSchema.methods.updateBalanceAndTransaction = async function (transactionType, stockSymbol, quantity, price) {
   const transactionAmount = quantity * price;
   const update = {
