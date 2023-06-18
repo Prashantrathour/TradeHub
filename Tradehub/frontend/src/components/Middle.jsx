@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Divider, Text, css, Button, Icon } from '@chakra-ui/react';
+import { Box, Divider, Text, css, Button, Icon, Heading } from '@chakra-ui/react';
 import { AiFillWarning, AiOutlineStar } from 'react-icons/ai';
 import Image1 from '../images/product_hero_crypto__6ef026ace9c7f7cf1047e15b98117523.png';
+import { NavLink } from 'react-router-dom';
 const Middle = () => {
   const glowingStyle = css`
     color: gold;
@@ -51,11 +52,11 @@ const Middle = () => {
     <Box bg="green" color="white" p={8} mt={2} textAlign="center">
         Get your first stock free. Limitations Apply.
     </Box>
-    <Box display="flex" bg='#7fff00' p={10} alignItems="center" mt={2}>
+    <Box display="flex" bg='#7fff00' p={10} alignItems="center" mt={2}  flexDirection={["column","column","row","row"]}>
         <Box flex="3" pr={4}>
           <img src="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/product_hero_invest__d3559005213c848c01f05060ac9469e0.png" alt="Investing" />
         </Box>
-        <Box flex="2" textAlign="left">
+        <Box flex="2" textAlign="center"  width={"100%"} p="10px">
           <Text color="green" fontWeight="bold" fontSize="45px" mb={4}>
             Investing
           </Text>
@@ -67,17 +68,18 @@ const Middle = () => {
             <Icon as={AiFillWarning} boxSize={6} mr={2} />
             Investing Disclosures
           </Text>
+          <NavLink to="/invest">
             <Button color="black" variant="outline" colorScheme="black" bg="#7fff00" size="lg" mt={6}>
-              Learn More
-            </Button>
+              Start Investing
+            </Button></NavLink>
         </Box>
       </Box>
-      <Text bg="#7fff00">Stocks & funds offered through Robinhood Financial. Other fees may apply. See our Fee Schedule for more details.</Text>
-      <Box display="flex" bg='#191970' p={10} alignItems="center" mt={2}>
+      <Text bg="#7fff00">Stocks & funds offered through Tradehub Financial. Other fees may apply. See our Fee Schedule for more details.</Text>
+      <Box display="flex" bg='#191970'  p={10} alignItems="center" mt={2}  flexDirection={["column","column","row","row"]}>
         <Box flex="3" pr={4}>
           <img src={Image1} alt="Investing" />
         </Box>
-        <Box flex="2" textAlign="left">
+        <Box flex="2"  textAlign="center"  width={"100%"} p="10px">
         <Text color="rgb(255, 90, 135)" fontWeight="bold" fontSize="45px" mb={-3}>
          Crypto
         </Text>
@@ -90,12 +92,17 @@ const Middle = () => {
             <Icon as={AiFillWarning} boxSize={6} mr={2} />
             Investing Disclosures
           </Text>
+          <NavLink to="/snacks">
             <Button color="white" variant="outline" colorScheme="black" bg="#7fff00" size="lg" mt={6}>
-              Learn More
-            </Button>
+              Read Articals
+            </Button></NavLink>
         </Box>
       </Box>
-      <Text bg="#7fff00">Stocks & funds offered through Robinhood Financial. Other fees may apply. See our Fee Schedule for more details.</Text>
+      <Text bg="#7fff00">Stocks & funds offered through Tradehub Financial. Other fees may apply. See our Fee Schedule for more details.</Text>
+      <Box backgroundSize={"cover"} overflow={"hidden"} margin={"10x"} bgImage={"https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/intro-background@1x__a7e1489efad180ee10a6e4d50c56d857.png"}>
+<Heading>Join me</Heading>
+<Box height={"100vh"}></Box>
+      </Box>
     </div>
   );
 };

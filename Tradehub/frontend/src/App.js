@@ -1,14 +1,26 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import './App.css';
-import AllRoutes from './Routes/AllRoutes';
-import Footer from './Components/Footer';
+import { Box, ChakraProvider } from "@chakra-ui/react";
+import "./App.css";
+import Navbar from "./components/Navbar";
+
+import MainRoute from "./Routers/MainRoute";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div className="App">
+
       
-     <AllRoutes/>
-     <Footer/>
+    
+
+      <ChakraProvider>
+        <Navbar />
+
+        <Box mt="55px">
+          <MainRoute />
+          <Footer/>
+        </Box>
+      </ChakraProvider>
+
     </div>
   );
 }

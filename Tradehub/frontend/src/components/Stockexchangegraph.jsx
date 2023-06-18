@@ -122,7 +122,7 @@ function StockExchangeGraph() {
         gap={"5px"}
         direction={["column", "column", "column", "row"]}
       >
-        <Box width={"100%"} m="10px" border={"1px solid red"}>
+        <Box width={"100%"} m="10px" p="10px">
           <StockGraph data={companydata} />
         </Box>
         <Box
@@ -131,17 +131,8 @@ function StockExchangeGraph() {
           border={"1px solid gray"}
           borderRadius={"30px"}
         >
-          {stockdata.map((stock) => {
-            if (stock.symbol === company) {
-              return <StockCard {...stock} symbol={symbol} />;
-            } else {
-              stockdata2.map((stock) => {
-                if (stock.symbol === company) {
-                  return <StockCard {...stock} />;
-                }
-              });
-            }
-          })}
+          <StockCard symbol={company} />
+
           <Box>
             <StockComponent />
           </Box>

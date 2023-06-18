@@ -1,3 +1,4 @@
+
 import React from "react";
 import "../style/Login.scss";
 
@@ -45,5 +46,6 @@ export default function Login() {
         </p>
       </div>
     </div>
+
   );
 }

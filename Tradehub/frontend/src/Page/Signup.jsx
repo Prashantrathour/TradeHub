@@ -1,5 +1,7 @@
 import React from "react";
+
 import "../style/Signup.scss";
+
 export default function Signup() {
   return (
     <div className="signup" id="signup">
@@ -92,3 +94,4 @@ export default function Signup() {
     </div>
   );
 }
+
