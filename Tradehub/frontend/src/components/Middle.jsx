@@ -100,7 +100,8 @@ const Middle = () => {
       </Box>
       <Text bg="#7fff00">Stocks & funds offered through Tradehub Financial. Other fees may apply. See our Fee Schedule for more details.</Text>
       <Box backgroundSize={"cover"} overflow={"hidden"} margin={"10x"} bgImage={"https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/intro-background@1x__a7e1489efad180ee10a6e4d50c56d857.png"}>
-<Heading>Join me</Heading>
+<Heading fontSize={"60px"} fontWeight={"600"}>Join a new generation of investors</Heading>
+<NavLink to="/demateaccount"><Button mt="30px" p="20px" colorScheme='green' variant={"outline"}>Create Demate Account</Button></NavLink>
 <Box height={"100vh"}></Box>
       </Box>
     </div>

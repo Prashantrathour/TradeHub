@@ -100,13 +100,13 @@ const NavLinks = () => (
         </MenuItem>
         <MenuItem
           as={RouterLink}
-          to="/stocks/yourportfolio"
+          to="/stocksellpage/A"
           border={"1px solid gray"}
           p="5px"
           borderRadius={"2xl"}
           bg={"black"}
         >
-          Your Portfolio
+         Sell your Stocks
         </MenuItem>
         <MenuItem
           as={RouterLink}
@@ -116,7 +116,7 @@ const NavLinks = () => (
           borderRadius={"2xl"}
           bg={"black"}
         >
-          All Stocks
+          All Services
         </MenuItem>
       </MenuList>
     </Menu>
@@ -140,7 +140,7 @@ const AuthButtons = () => (
         Login
       </Button>
     </NavLink>
-      <Button colorScheme="orange">Create Demat Account</Button>
+    <NavLink to="/demateaccount"> <Button colorScheme="orange">Create Demat Account</Button></NavLink>
     </Flex>
   </Box>
 );
@@ -154,6 +154,7 @@ const AuthButtonsmob = () => (
      </NavLink>
     </Flex>
     <Box>
+      <NavLink to="/demateaccount">
       <Button
         overflow={"hidden"}
         textOverflow={"ellipsis"}
@@ -162,7 +163,7 @@ const AuthButtonsmob = () => (
       >
         {" "}
         Create Demat Account
-      </Button>
+      </Button></NavLink>
     </Box>
   </Box>
 );
@@ -193,13 +194,13 @@ const MobileDrawer = ({ isOpen, onClose }) => (
                 </MenuItem>
                 <MenuItem
                   as={RouterLink}
-                  to="/stocks/yourportfolio"
+                  to="/stocksellpage/A"
                   border={"1px solid gray"}
                   p="5px"
                   borderRadius={"2xl"}
                   bg={"black"}
                 >
-                  Your Portfolio
+                 stocksellpage
                 </MenuItem>
                 <MenuItem
                   as={RouterLink}
@@ -209,7 +210,7 @@ const MobileDrawer = ({ isOpen, onClose }) => (
                   borderRadius={"2xl"}
                   bg={"black"}
                 >
-                  All Stocks
+                  All Services
                 </MenuItem>
               </MenuList>
             </Menu>

@@ -13,6 +13,7 @@ import {
   Heading,
   Flex,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import {
   Chart as ChartJS,
@@ -54,11 +55,12 @@ ChartJS.register(
 );
 
 const StockBuyPage = () => {
-  const [symbol, setSymbol] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [symbolstock, setSymbol] = useState("");
+  const [quantity, setQuantity] = useState(1);
   const [orderType, setOrderType] = useState("");
-  const { symbol: stockSymbol } = useParams();
-
+  const [stockData, setstockdata] = useState(1);
+  const { symbol } = useParams();
+  const toast = useToast();
   const fetchStock = async () => {
     const response = await axios.get(
       `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${
@@ -76,42 +78,73 @@ const StockBuyPage = () => {
       x.push(key);
       y.push(data["Time Series (Daily)"][key]["1. open"]);
     }
-
-    // setYValues(y);
-    // setXValues(x);
   };
-  const handleSymbolChange = (event) => {
-    setSymbol(event.target.value);
+  const fetchtargetStock = async () => {
+    try {
+      const response = await axios.get(
+        `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${
+          symbol || "AAPL"
+        }&apikey=21Q868YD7GYTKXV0`
+      );
+
+      const data =
+        response.data["Time Series (Daily)"]["2023-06-16"]["4. close"];
+
+      console.log(data, symbol);
+      setstockdata(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleQuantityChange = (event) => {
     setQuantity(event.target.value);
   };
 
-  const handleOrderTypeChange = (event) => {
-    setOrderType(event.target.value);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Prepare the data object to be sent in the request
+    const data = {
+      stockSymbol: symbol,
+      quantity: quantity,
+      averagePrice: (+stockData),
+    };
+    const token =localStorage.getItem("token")
+
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+  
+  };
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASEURL}/demat/buy`,
+        data,config
+      );
+console.log(response.data,data);
+      toast({
+        title: response.data.msg,
+        description: "buy Succesfully",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+    } catch (error) {
+      console.log(error)
+      toast({
+        title: error.response.data.error,
+        description: "Buying stock Unsuccessful",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Process the form data (e.g., submit an API request to buy the stock)
-
-    // Reset the form
-    setSymbol("");
-    setQuantity("");
-    setOrderType("");
-  };
-
-  // Dummy stock data
-  const stockData = [
-    { symbol: "AAPL", companyName: "Apple Inc.", price: 150.25 },
-    { symbol: "GOOGL", companyName: "Alphabet Inc.", price: 2525.75 },
-    { symbol: "MSFT", companyName: "Microsoft Corporation", price: 300.5 },
-  ];
   useEffect(() => {
     fetchStock();
-    setSymbol(stockSymbol);
+    fetchtargetStock();
+    setSymbol(symbol);
   }, []);
 
   return (
@@ -138,6 +171,10 @@ const StockBuyPage = () => {
           <form onSubmit={handleSubmit}>
             <FormControl id="quantity" mb={4}>
               <FormLabel>Quantity</FormLabel>
+              <Text>
+                <strong>Price(per stock):-</strong>
+                {stockData}
+              </Text>
               <Input
                 type="number"
                 value={quantity}
@@ -148,26 +185,9 @@ const StockBuyPage = () => {
               />
             </FormControl>
 
-            <FormControl id="orderType" mb={4}>
-              <FormLabel>Order Type</FormLabel>
-              <Select
-                value={orderType}
-                onChange={handleOrderTypeChange}
-                bg="gray.100"
-                border="none"
-                _focus={{ outline: "none" }}
-              >
-                <option value="market">Market</option>
-                <option value="limit">Limit</option>
-              </Select>
-            </FormControl>
-
             <Stack direction="row" justify="space-between" align="center">
               <Text fontWeight="bold" fontSize="lg">
-                Total Price: $
-                {quantity *
-                  stockData.find((stock) => stock.symbol === symbol)?.price ||
-                  0}
+                Total Price: ${quantity * stockData || 0}
               </Text>
               <Button type="submit" colorScheme="brand" variant="solid">
                 Buy Stock
@@ -180,17 +200,17 @@ const StockBuyPage = () => {
           <Box width={"100%"}>
             <Box>
               <Image
-                src={`https://companiesmarketcap.com/img/company-logos/64/${stockSymbol}.webp`}
+                src={`https://companiesmarketcap.com/img/company-logos/64/${symbol}.webp`}
                 alt={"name"}
                 boxSize="100px"
               />
             </Box>
             <Box>
-              <StockChart symbol={stockSymbol} />
+              <StockChart symbol={symbol} />
             </Box>
           </Box>
           <Box width={"100%"}>
-            <CompanyReview symbol={stockSymbol} />
+            <CompanyReview symbol={symbol} />
           </Box>
         </Flex>
       </ChakraProvider>

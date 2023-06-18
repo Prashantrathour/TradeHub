@@ -51,6 +51,7 @@ function StockComponent() {
             value={buyValue}
             onChange={handleBuyChange}
             placeholder="Enter quantity"
+            disabled
           />
           <NavLink to={`/stockbuypage/${symbol}`}><button onClick={handleBuyClick} p="10px" varient={"outline"}>Buy</button></NavLink>
         </TabPanel>
@@ -62,6 +63,7 @@ function StockComponent() {
             value={sellValue}
             onChange={handleSellChange}
             placeholder="Enter quantity"
+            disabled
           />
          <NavLink to={`/stocksellpage/${symbol}`}><button p="10px" varient={"outline"} onClick={handleSellClick}>Sell</button></NavLink> 
         </TabPanel>

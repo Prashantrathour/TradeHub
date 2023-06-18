@@ -1,13 +1,75 @@
+
+import React, { useState } from "react";
+import axios from "axios";
+import "../Page/style/Signup.scss";
+import { useToast } from "@chakra-ui/react";
+import { warning } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
 import React from "react";
 
 import "../style/Signup.scss";
 
+
 export default function Signup() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const toast = useToast();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Prepare the data object to be sent in the request
+    const data = {
+      firstName,
+      lastName,
+      email,
+      password,
+    };
+
+    try {
+      // Make an API request using axios or any other HTTP library
+      const res = await axios.post(
+        `${process.env.REACT_APP_BASEURL}/users/register`,
+        data
+      );
+      console.log(res.data);
+      //  Handle the response as needed
+      toast({
+        title: res.data.msg,
+        description: "Login to continue...",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000);
+    } catch (error) {
+      console.log(error.response.data.msg);
+      toast({
+        title: error.response.data.msg,
+        description: "please enter write credentials...",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+      });
+
+      if (error.response.data.state) {
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
+    }
+  };
+
   return (
     <div className="signup" id="signup">
       <div className="signup-left">
         <div className="left-top">
-          <h3>Robinhood</h3>
+          <h3>TradeHub</h3>
         </div>
         <div className="heading">
           <h2>Create your login</h2>
@@ -15,7 +77,7 @@ export default function Signup() {
         <div className="para">
           <p>
             We'll need your name, email address, and a unique password. You'll
-            use this login to access Robinhood next time.
+            use this login to access TradeHub next time.
           </p>
         </div>
         <div className="bottom-rocket">
@@ -52,31 +114,43 @@ export default function Signup() {
               Enter your first and last name as they appear on your government
               ID.
             </h2>
-            <form action="">
+            <form onSubmit={handleSubmit}>
               <div className="top">
                 <div className="signup-child">
                   <div className="signup-firstname">
-                    <input type="text" placeholder="First name" />
+                    <input
+                      type="text"
+                      placeholder="First name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
                   </div>
                   <div className="signup-lastname">
-                    <input type="text" placeholder="Last name" />
+                    <input
+                      type="text"
+                      placeholder="Last name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
                   </div>
                 </div>
                 <div className="signup-email">
-                  <input type="text" placeholder="Email address" />
+                  <input
+                    type="text"
+                    placeholder="Email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
                 <div className="signup-password">
                   <input
-                    type="text"
+                    type="password"
                     placeholder="Password(min. 10 characters)"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <div className="signup-para">
-                  <p>
-                    Sorry! We're not currently able to accept applications from
-                    outside the United States.
-                  </p>
-                </div>
+
                 <div className="signup-para2">
                   <p>
                     By continuing, you agree to the Robinhood User Account
@@ -85,7 +159,9 @@ export default function Signup() {
                 </div>
               </div>
               <div className="continue-btn-div">
-                <button className="continue-btn">Continue</button>
+                <button className="continue-btn" type="submit">
+                  Continue
+                </button>
               </div>
             </form>
           </div>
