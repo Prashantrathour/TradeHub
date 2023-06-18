@@ -1,6 +1,4 @@
-// import React from "react";
-// import "../Page/style/Login.scss";
-// import { NavLink } from "react-router-dom";
+
 
 
 // export default function Login() {
@@ -32,23 +30,6 @@
 //               </label>
 //             </div>
 
-//             <div className="form-child">
-//               <strong>Forget your Password?</strong>
-//               <strong>Forget your Email Address?</strong>
-//             </div>
-//             <button className="button">Log In</button>
-//           </form>
-//         </div>
-//         <p>
-//           Not in Robinhood?
-//           <strong>
-//             <NavLink to="/signup">create an account</NavLink>
-//           </strong>
-//         </p>
-//       </div>
-//     </div>
-//   );
-// }
 import React, { useState } from "react";
 import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Image, Input, Link, Text, useToast } from "@chakra-ui/react";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -101,6 +82,7 @@ export default function Login() {
   };
 
   return (
+
     <Flex
       direction={{ base: "column-reverse", md: "row" }}
       align="center"
@@ -175,6 +157,7 @@ export default function Login() {
         </Box>
       </Flex>
     </Flex>
+
   );
 }
 

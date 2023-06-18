@@ -1,9 +1,12 @@
+
+
 import React, { useState } from "react";
 import axios from "axios";
 import "../Page/style/Signup.scss";
 import { useToast } from "@chakra-ui/react";
 import { warning } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+
 
 export default function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -163,3 +166,4 @@ export default function Signup() {
     </div>
   );
 }
+
