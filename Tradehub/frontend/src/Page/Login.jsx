@@ -49,13 +49,57 @@
 //     </div>
 //   );
 // }
-import React from "react";
-import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Image, Input, Link, Text } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Image, Input, Link, Text, useToast } from "@chakra-ui/react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaLock, FaUser, FaQuestionCircle } from "react-icons/fa";
 import { RiAccountPinBoxLine } from "react-icons/ri";
+import axios from "axios";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate=useNavigate()
+  const toast = useToast();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Prepare the data object to be sent in the request
+    const data = {
+      email,
+      password
+    };
+
+    try {
+      // Make an API request using axios or any other HTTP library
+      const response = await axios.post(`${process.env.REACT_APP_BASEURL}/users/login`, data);
+      const { token } = response.data;
+
+      // Store the token in local storage
+      localStorage.setItem("token", token);
+      toast({
+        title: response.data.msg,
+        description: "Login Succesfully",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      setTimeout(() => {
+        navigate("/")
+      }, 5000);
+      console.log("Logged in successfully");
+    } catch (error) {
+      
+      toast({
+        title:error.response.data.msg,
+        description: "Logged in Unsuccessful",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+
   return (
     <Flex
       direction={{ base: "column-reverse", md: "row" }}
@@ -83,14 +127,14 @@ export default function Login() {
             <FormLabel>Email</FormLabel>
             <Flex align="center">
               <FaUser size={18} color="gray.400" mr={2} />
-              <Input type="email" />
+              <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </Flex>
           </FormControl>
           <FormControl id="password" mb={4}>
             <FormLabel>Password</FormLabel>
             <Flex align="center">
               <FaLock size={18} color="gray.400" mr={2} />
-              <Input type="password" />
+              <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </Flex>
           </FormControl>
           <Flex align="center" mb={4}>
@@ -107,7 +151,7 @@ export default function Login() {
               Forget your Email Address?
             </Link>
           </Flex>
-          <Button colorScheme="blue" size="lg" width="full" mb={4}>
+          <Button colorScheme="blue" size="lg" width="full" mb={4} onClick={handleSubmit}>
             Log In
           </Button>
           <Text textAlign="center">
@@ -133,3 +177,4 @@ export default function Login() {
     </Flex>
   );
 }
+

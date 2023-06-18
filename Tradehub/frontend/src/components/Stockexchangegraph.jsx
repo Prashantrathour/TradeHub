@@ -31,24 +31,29 @@ function StockExchangeGraph() {
   const [companydata, setdata] = useState([]);
 
   const fetchStock = async () => {
-    const response = await axios.get(
-      `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${
-        company || "AAPL"
-      }&apikey=21Q868YD7GYTKXV0`
-    );
-    const data = response.data;
-    setdata(data["Time Series (Daily)"]);
-
-    let x = [];
-    let y = [];
-
-    for (var key in data["Time Series (Daily)"]) {
-      x.push(key);
-      y.push(data["Time Series (Daily)"][key]["1. open"]);
+    try {
+      const response = await axios.get(
+        `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${
+          company || "AAPL"
+        }&apikey=21Q868YD7GYTKXV0`
+      );
+      const data = response.data;
+      setdata(data["Time Series (Daily)"]);
+  console.log(data)
+      let x = [];
+      let y = [];
+  
+      for (var key in data["Time Series (Daily)"]) {
+        x.push(key);
+        y.push(data["Time Series (Daily)"][key]["1. open"]);
+      }
+  
+      setYValues(y);
+      setXValues(x);
+    } catch (error) {
+      console.log(error)
     }
-
-    setYValues(y);
-    setXValues(x);
+    
   };
 
   let data = [
@@ -93,7 +98,7 @@ function StockExchangeGraph() {
       }
     });
     fetchStock();
-  }, [symbol, company]);
+  }, []);
 
   return (
     <Box>
@@ -140,7 +145,7 @@ function StockExchangeGraph() {
       </Flex>
       <Box m="10px">
         <Heading as="h4">Read Articles</Heading>
-        {/* <Article company={companyName} /> */}
+        <Article company={companyName} />
       </Box>
     </Box>
   );

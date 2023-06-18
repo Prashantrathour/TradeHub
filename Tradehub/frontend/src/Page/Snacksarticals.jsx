@@ -37,7 +37,7 @@ function Snacks() {
     <ArrowForwardIcon bgSize="30px" />
   </Button>
 </Box>
-      {/* <Article/> */}
+      <Article/>
     </Box>
   );
 }
