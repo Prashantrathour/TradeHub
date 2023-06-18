@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "../Page/style/Signup.scss";
+import { useToast } from "@chakra-ui/react";
+import { warning } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -159,71 +163,3 @@ export default function Signup() {
     </div>
   );
 }
-// import { Box, Button, Input, Stack, Text } from "@chakra-ui/react";
-// import { EmailIcon, LockIcon, StarIcon, ViewIcon } from "@chakra-ui/icons";
-
-// export default function Signup() {
-//   return (
-//     <Box display="flex" flexWrap="wrap" id="signup" >
-//       <Box flex="1" p="4" bg={"rgb(130, 200, 210)"}>
-//         <Box>
-//           <Text fontSize={{ base: "xl", md: "2xl" }}>Tradehub</Text>
-//         </Box>
-//         <Box>
-//           <Text fontSize={{ base: "2xl", md: "3xl" }} mt="4">Create your login</Text>
-//         </Box>
-       
-//         <Box mt="4">
-//           <img
-//             src="https://cdn.robinhood.com/app_assets/odyssey/rockets.png"
-//             alt=""
-//           />
-//         </Box>
-//       </Box>
-//       <Box flex="1" p="4" bg={"rgb(90, 230, 26)"}>
-//         <Box mt="4">
-//           <img
-//             src="https://cdn.robinhood.com/assets/generated_assets/webapp/47b5bed44e945bf03fd845eb90ca3922.png"
-//             alt=""
-//           />
-//         </Box>
-//         <Box mt="4">
-//           <Text fontSize={{ base: "xl", md: "3xl" }}>Join today and get your free stock from leading companies.</Text>
-//         </Box>
-//         <Box mt="4">
-//           <Text>
-//             Jump start your investment journey and invest with more confidence.
-//           </Text>
-//           <Text>Certain limitations apply.</Text>
-//         </Box>
-//       </Box>
-//       <Box flex="1" p="4">
-//         <Box>
-//           <Text fontSize={{ base: "xl", md: "2xl" }}>
-//             Enter your first and last name as they appear on your government
-//             ID.
-//           </Text>
-//         </Box>
-//         <form>
-//           <Stack spacing="4" mt="4">
-//             <Stack direction={{ base: "column", md: "row" }} spacing="4">
-//               <Input flexBasis={{ base: "100%", md: "50%" }} placeholder="First name" />
-//               <Input flexBasis={{ base: "100%", md: "50%" }} placeholder="Last name" />
-//             </Stack>
-//             <Input leftIcon={<EmailIcon />} type="email" placeholder="Email address" />
-//             <Input leftIcon={<LockIcon />} type="password" placeholder="Password (min. 10 characters)" rightIcon={<ViewIcon />} />
-//             <Text>
-//               By continuing, you agree to the Tradehub User Account Agreement and Privacy Policy.
-//             </Text>
-//             <Box>
-//               <Button colorScheme="blue" width="100%">Continue</Button>
-//             </Box>
-//           </Stack>
-//         </form>
-//       </Box>
-//     </Box>
-//   );
-// }
-
-
-
