@@ -21,6 +21,8 @@ import {
 } from "react-icons/fa";
 import { RiBankFill, RiSecurePaymentLine } from "react-icons/ri";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const CreateDematAccountPage = () => {
   const [accountHolderName, setAccountHolderName] = useState("");
@@ -30,7 +32,8 @@ const CreateDematAccountPage = () => {
   const [bankBranch, setBankBranch] = useState("");
   const [bankIFSC, setBankIFSC] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
-
+  const navigate=useNavigate()
+const token=localStorage.getItem("token");
   const toast = useToast();
 
   const handleSubmit = (e) => {
@@ -95,7 +98,11 @@ const CreateDematAccountPage = () => {
     setBankIFSC("");
     setMobileNumber("");
   };
-
+useEffect(()=>{
+if(!token){
+  navigate("/login")
+}
+},[token])
   return (
     <Box width="100%" boxSizing="border-box" mx="auto" bg="gray.100" p={4}>
       <Heading as="h1" size="xl" mb={4} textAlign="center">

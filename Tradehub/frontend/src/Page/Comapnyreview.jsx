@@ -50,7 +50,7 @@ const CompanyReview = ({ symbol }) => {
   } = data;
 
   return (
-    <Box boxSize={"-webkit-fit-content"} marginTop={"30px"}>
+    <Box boxSize="fit-content" maxWidth="100%" marginTop="30px">
       <Fade in={true}>
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -62,7 +62,7 @@ const CompanyReview = ({ symbol }) => {
             <Text fontSize="xl" fontWeight="bold" mb={2}>
               {Name} ({Symbol})
             </Text>
-            <Text mb={2} textAlign="left" overflowWrap={"break-word"}>
+            <Text mb={2} textAlign="left" overflowWrap="break-word">
               <strong>About Company:</strong> {Description}
             </Text>
             <Text mb={2} textAlign="left">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Link as RouterLink } from "react-router-dom";
 import tradehubImage from "../images/unnamed (1).jpg";
 import {
@@ -21,6 +21,7 @@ import {
   MenuList,
   MenuItem,
   Image,
+  Avatar,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
@@ -28,14 +29,27 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isMobile = useBreakpointValue({ base: true, md: false });
   const isTablet = useBreakpointValue({ base: false, md: true });
+  const [user, setuser] = useState(null);
 
+
+  const logout=()=>{
+    localStorage.setItem('user',"")
+    localStorage.setItem('token',"")
+    setuser("")
+  }
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setuser(user);
+    }
+  }, []);
   return (
     <>
       <Box
         bg="black"
         color="white"
         px={4}
-        py={2}
+        py={4}
         position="fixed"
         top={0}
         left={0}
@@ -62,7 +76,7 @@ const Navbar = () => {
           {!isMobile && (
             <>
               <NavLinks />
-              <AuthButtons />
+              <AuthButtons logout={logout} user={user} />
             </>
           )}
           {isMobile && (
@@ -76,7 +90,9 @@ const Navbar = () => {
           )}
         </Flex>
       </Box>
-      {isMobile && <MobileDrawer isOpen={isOpen} onClose={onClose} />}
+      {isMobile && (
+        <MobileDrawer user={user} isOpen={isOpen} onClose={onClose} />
+      )}
     </>
   );
 };
@@ -106,7 +122,7 @@ const NavLinks = () => (
           borderRadius={"2xl"}
           bg={"black"}
         >
-         Sell your Stocks
+          Sell your Stocks
         </MenuItem>
         <MenuItem
           as={RouterLink}
@@ -132,43 +148,89 @@ const NavButton = ({ to, children }) => (
   </Button>
 );
 
-const AuthButtons = () => (
-  <Box>
+const AuthButtons = ({ user,logout }) => (
+  <Box >
     <Flex alignItems="center" boxSizing={"content-box"} margin={"auto"}>
-      <NavLink to={"/login"}>
-      <Button variant="ghost" colorScheme="white" mr={2}>
-        Login
-      </Button>
-    </NavLink>
-    <NavLink to="/demateaccount"> <Button colorScheme="orange">Create Demat Account</Button></NavLink>
+      {!user ? (
+        <NavLink to={"/login"}>
+          <Button variant="ghost" colorScheme="white" mr={2}>
+            Login
+          </Button>
+        </NavLink>
+      ) : (
+        <Flex>
+        <Flex _hover={{color:"gold"}}
+          gap={"-10"}
+         
+          justify={"center"}
+          flexDirection={"row"}
+        >
+          <Avatar alignSelf={"center"} size={"2xs"} />{" "}
+          <Button variant="ghost" colorScheme="white" mr={1}  position={"relative"}>
+            {user}
+          </Button>
+        </Flex>
+        <NavLink to={"#"}>
+          <Button onClick={logout}  variant="ghost" colorScheme="white" mr={2}>
+            Logout
+          </Button>
+        </NavLink>
+        </Flex>
+      )}
+      <NavLink to="/demateaccount">
+        {" "}
+        <Button colorScheme="orange">Create Demat Account</Button>
+      </NavLink>
     </Flex>
   </Box>
 );
-const AuthButtonsmob = () => (
-  <Box alignItems="center" p="5px" margin={"auto"}>
+const AuthButtonsmob = ({ user,logout }) => (
+  <Box alignItems="center" p="5px" margin={"auto"} >
     <Flex>
-    <NavLink to={"/login"}>
-      <Button variant="ghost" colorScheme="white" mr={2}>
-        Login
-      </Button>
-     </NavLink>
+      {!user ? (
+        <NavLink to={"/login"}>
+          <Button variant="ghost" colorScheme="white" mr={2}>
+            Login
+          </Button>
+        </NavLink>
+      ) : (
+        <Flex>
+        <Flex _hover={{color:"gold"}}
+          gap={"-10"}
+         
+          justify={"center"}
+          flexDirection={"column"}
+        >
+          <Avatar alignSelf={"center"} size={"sm"} />{" "}
+          <Button variant="ghost" colorScheme="white" mr={2}>
+            {user}
+          </Button>
+        </Flex>
+        <NavLink to={"#"}>
+          <Button onClick={logout}  mt="30px" variant="ghost" colorScheme="white" mr={2}>
+            Logout
+          </Button>
+        </NavLink>
+        </Flex>
+      )}
     </Flex>
     <Box>
       <NavLink to="/demateaccount">
-      <Button
-        overflow={"hidden"}
-        textOverflow={"ellipsis"}
-        whiteSpace={"nowrap"}
-        colorScheme="orange"
-      >
-        {" "}
-        Create Demat Account
-      </Button></NavLink>
+        <Button
+          overflow={"hidden"}
+          textOverflow={"ellipsis"}
+          whiteSpace={"nowrap"}
+          colorScheme="orange"
+        >
+          {" "}
+          Create Demat Account
+        </Button>
+      </NavLink>
     </Box>
   </Box>
 );
 
-const MobileDrawer = ({ isOpen, onClose }) => (
+const MobileDrawer = ({logout, user, isOpen, onClose }) => (
   <ChakraDrawer isOpen={isOpen} placement="left" onClose={onClose}>
     <DrawerOverlay>
       <DrawerContent bg="gray.800" color="white">
@@ -176,7 +238,6 @@ const MobileDrawer = ({ isOpen, onClose }) => (
         <DrawerHeader>Menu</DrawerHeader>
         <DrawerBody>
           <Stack spacing={4}>
-          
             <Menu isLazy>
               <MenuButton as={Button} colorScheme="white">
                 Stocks
@@ -200,7 +261,7 @@ const MobileDrawer = ({ isOpen, onClose }) => (
                   borderRadius={"2xl"}
                   bg={"black"}
                 >
-                 stocksellpage
+                  stocksellpage
                 </MenuItem>
                 <MenuItem
                   as={RouterLink}
@@ -217,7 +278,7 @@ const MobileDrawer = ({ isOpen, onClose }) => (
             <NavButton to="/snacks">Snacks</NavButton>
             <NavButton to="/learn">Learn</NavButton>
             <NavButton to="/support">Support</NavButton>
-            <AuthButtonsmob />
+            <AuthButtonsmob logout={logout} user={user} />
           </Stack>
         </DrawerBody>
       </DrawerContent>

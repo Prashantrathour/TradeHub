@@ -196,8 +196,8 @@ console.log(response.data,data);
           </form>
         </Box>
 
-        <Flex width="100%" mt={8}>
-          <Box width={"100%"}>
+        <Flex width="100%" mt={8} flexDirection={["column","column","column","row"]}>
+          <Box width={"50%"} m="10">
             <Box>
               <Image
                 src={`https://companiesmarketcap.com/img/company-logos/64/${symbol}.webp`}
@@ -205,11 +205,11 @@ console.log(response.data,data);
                 boxSize="100px"
               />
             </Box>
-            <Box>
+            <Box width="100%">
               <StockChart symbol={symbol} />
             </Box>
           </Box>
-          <Box width={"100%"}>
+          <Box m="10px" maxWidth={"100%"} boxSizing={"border-box"}>
             <CompanyReview symbol={symbol} />
           </Box>
         </Flex>

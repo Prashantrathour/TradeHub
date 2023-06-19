@@ -54,13 +54,15 @@ export default function Login() {
     try {
       // Make an API request using axios or any other HTTP library
       const response = await axios.post(`${process.env.REACT_APP_BASEURL}/users/login`, data);
+      console.log(response.data)
       const { token } = response.data;
 
       // Store the token in local storage
       localStorage.setItem("token", token);
+      localStorage.setItem("user", response.data.user);
       toast({
         title: response.data.msg,
-        description: "Login Succesfully",
+        description: `${response.data.user}-Login Succesfully`,
         status: "success",
         duration: 5000,
         isClosable: true,

@@ -11,7 +11,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const StockSellingPage = () => {
@@ -20,7 +20,7 @@ const StockSellingPage = () => {
   const [selectedStock, setSelectedStock] = useState("");
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState("");
-
+const navigate=useNavigate()
   const token = localStorage.getItem("token");
 
   const config = {
@@ -43,15 +43,28 @@ const selecthandle=(e)=>{
     console.log(price)
 }
   useEffect(() => {
+    if(!token){
+      navigate("/login")
+      return
+    }
+
     getholding();
     
   }, []);
 
   const handleSell = (e) => {
+    const token = localStorage.getItem("token");
+
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
     e.preventDefault();
     // Handle stock selling logic
     // Update stock quantities or make API calls
     console.log(`Selling stock: ${selectedStock}`);
+
+
+    axios.post(`${process.env.BASEURL}/demat/sell`)
   };
 
   return (
@@ -104,7 +117,7 @@ const selecthandle=(e)=>{
           Sell
         </Button>
       </Stack>
-    </Container>:<Heading>{"No Stock in your account"}</Heading>}
+    </Container>:<Heading p="20px">{"No Stock in your account"}</Heading>}
     </>
   );
 };
