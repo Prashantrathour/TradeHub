@@ -1,164 +1,275 @@
-import React from "react";
-import "../style/Footer.scss";
+import { Box, Flex, Link, Text } from "@chakra-ui/react";
+import { FaTwitter, FaEnvelope, FaYoutube } from "react-icons/fa";
 
-export default function Footer() {
+function Footer() {
   return (
-    <>
-      <div className="footer">
-        <div className="foottop">
-          <div>
-            <h3>
-              <a href="">Brokerage Customer Relationship Summary</a>
-              <span>
-                {" "}
-                | <a href="">FINRA’s BrokerCheck</a>
-              </span>
-            </h3>
-          </div>
-          <div className="follow">
-            <div className="space">
-              <h3>Follow us on</h3>
-            </div>
-            <div>
-              <span>
-                <img
-                  width="15%"
-                  src="https://static.vecteezy.com/system/resources/previews/019/490/753/original/black-twitter-logo-black-twitter-icon-twitter-symbol-free-free-vector.jpg"
-                  alt=""
-                />
-              </span>
-              <span>
-                <img
-                  width="13.5%"
-                  src="https://thumbs.dreamstime.com/b/instagram-logo-icon-voronezh-russia-january-black-square-shadow-171161247.jpg"
-                  alt=""
-                />
-              </span>
-
-              <span>
-                <img
-                  width="14%"
-                  src="https://static.vecteezy.com/system/resources/previews/018/910/726/original/linkedin-logo-linkedin-symbol-linkedin-icon-free-free-vector.jpg"
-                  alt=""
-                />
-              </span>
-
-              <span>
-                <img
-                  width="13.5%"
-                  src="https://static.vecteezy.com/system/resources/previews/002/557/421/original/tiktok-logo-black-mobile-social-media-icon-free-vector.jpg"
-                  alt=""
-                />
-              </span>
-
-              <span>
-                <img
-                  width="13.5%"
-                  src="https://i.pinimg.com/originals/7e/d4/a3/7ed4a324620f9d17ae73322329e028b9.jpg"
-                  alt=""
-                />
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="verticle"></div>
-      </div>
-      <div className="midsection">
-        <div>
-          <h3 style={{ marginLeft: "20px" }}>DEMOCRATIZE FINANCE FOR ALL™</h3>
-        </div>
-        <div className="disf">
-          <div className="downsection">
-            <div className="footgrid">
-              <ul>
-                <h3>Product</h3>
-                <li>Invest</li>
-                <li>Crypto</li>
-                <li>Retirement</li>
-                <li>Option</li>
-                <li>Card Card</li>
-                <li>Learn</li>
-                <li>Snacks</li>
-              </ul>
-            </div>
-
-            <div className="footgrid">
-              <ul>
-                <h3>Company</h3>
-                <li>About us</li>
-                <li>Blog</li>
-                <li>Affiliates</li>
-                <li>Press</li>
-                <li>Careers</li>
-                <li>Commitments</li>
-                <li>Investor Relation</li>
-                <li>Support</li>
-                <li>ESG</li>
-                <li>Potdcast</li>
-                <li>Investor Index</li>
-              </ul>
-            </div>
-
-            <div className="footgrid">
-              <ul>
-                <h3>Legal & Regulatoy</h3>
-                <li>Term & Condition</li>
-                <li>Disclosures</li>
-                <li>Privacy</li>
-                <li>Law Enforcement Req</li>
-              </ul>
-            </div>
-
-            <div className="fix">
-              <h3>All investing involves risk.</h3>
-              <p>
-                Brokerage services are offered through Robinhood Financial LLC,
-                (“RHF”) a registered broker dealer (member SIPC) and clearing
-                services through Robinhood Securities, LLC, (“RHS”) a registered
-                broker dealer (member SIPC). Cryptocurrency services are offered
-                through Robinhood Crypto, LLC (“RHC”) (NMLS ID: 1702840). The
-                Robinhood Money spending account is offered through Robinhood
-                Money, LLC (“RHY”) (NMLS ID: 1990968), a licensed money
-                transmitter. The Robinhood Cash Card is a prepaid card issued by
-                Sutton Bank, Member FDIC, pursuant to a license from Mastercard®
-                International Incorporated. RHF, RHY, RHC and RHS are affiliated
-                entities and wholly owned subsidiaries of Robinhood Markets,
-                Inc. RHF, RHY, RHC and RHS are not banks. Securities products
-                offered by RHF are not FDIC insured and involve risk, including
-                possible loss of principal. Cryptocurrencies held in RHC
-                accounts are not covered by FDIC or SIPC protections and are not
-                regulated by FINRA. RHY products are not subject to SIPC
-                coverage but funds held in the Robinhood Money spending account
-                and Robinhood Cash Card account may be eligible for FDIC
-                pass-through insurance (see the Robinhood Cash Card Agreement
-                and the Robinhood Spending Account Agreement).
-              </p>
-              <p>
-                Options trading entails significant risk and is not appropriate
-                for all customers. Customers must read and understand the
-                Characteristics and Risks of Standardized Options before
-                engaging in any options trading strategies. Options transactions
-                are often complex and may involve the potential of losing the
-                entire investment in a relatively short period of time. Certain
-                complex options strategies carry additional risk, including the
-                potential for losses that may exceed the original investment
-                amount.
-              </p>
-              <p>
-                Commission-free trading of stocks, ETFs and options refers to $0
-                commissions for Robinhood Financial self-directed individual
-                cash or margin brokerage accounts that trade U.S. listed
-                securities and certain OTC securities electronically. Keep in
-                mind, other fees such as trading (non-commission) fees, Gold
-                subscription fees, wire transfer fees, and paper statement fees
-                may apply to your brokerage account. Please see Robinhood
-                Financial’s Fee Schedule to learn more.
-              </p>
-              <p> © 2023 Robinhood. All rights reserved.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    <Box as="footer" bg="black" py={8}>
+      <Flex direction="column" align="center" justify="center">
+        <Flex direction="column" align="center" mb={4}>
+          <Text color="white" fontSize="sm" textAlign="center">
+            © 2023 Tradehub. All rights reserved.
+          </Text>
+          <Text color="gray.400" fontSize="sm" textAlign="center">
+            All investing involves risk.
+          </Text>
+        </Flex>
+        <Flex wrap="wrap" justify="center" mt={4}>
+          <Link
+            href="/product/invest"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Invest
+          </Link>
+          <Link
+            href="/product/crypto"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Crypto
+          </Link>
+          <Link
+            href="/product/retirement"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Retirement
+          </Link>
+          <Link
+            href="/product/options"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Options
+          </Link>
+          <Link
+            href="/product/cash-card"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Cash Card
+          </Link>
+          <Link
+            href="/learn/snacks"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Snacks
+          </Link>
+        </Flex>
+        <Flex wrap="wrap" justify="center" mt={4}>
+          <Link
+            href="/company/about-us"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            About Us
+          </Link>
+          <Link
+            href="/company/blog"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Blog
+          </Link>
+          <Link
+            href="/company/affiliates"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Affiliates
+          </Link>
+          <Link
+            href="/company/press"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Press
+          </Link>
+          <Link
+            href="/company/careers"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Careers
+          </Link>
+          <Link
+            href="/company/commitments"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Commitments
+          </Link>
+        </Flex>
+        <Flex wrap="wrap" justify="center" mt={4}>
+          <Link
+            href="/company/our-customers"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Our Customers
+          </Link>
+          <Link
+            href="/company/investor-relations"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Investor Relations
+          </Link>
+        </Flex>
+        <Flex wrap="wrap" justify="center" mt={4}>
+          <Link
+            href="/support"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Support
+          </Link>
+          <Link
+            href="/esg"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            ESG
+          </Link>
+          <Link
+            href="/podcast"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Podcast
+          </Link>
+          <Link
+            href="/investor-index"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Investor Index
+          </Link>
+        </Flex>
+        <Flex wrap="wrap" justify="center" mt={4}>
+          <Link
+            href="/legal-terms-and-conditions"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Terms and Conditions
+          </Link>
+          <Link
+            href="/legal-disclosures"
+            color="gray.400"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Disclosures
+          </Link>
+          <Link
+            href="/legal-privacy"
+            color="white"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Privacy
+          </Link>
+          <Link
+            href="/legal-law-enforcement-requests"
+            color="white"
+            fontSize="sm"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            Law Enforcement Requests
+          </Link>
+        </Flex>
+            <Text fontWeight={"600"} color={"white"} fontSize={"20px"}> Connect to us :</Text>
+        <Flex wrap="wrap" justify="center" mt={4}>
+          <Link
+            href="https://twitter.com/yourusername"
+            target="_blank"
+            color="white"
+            rel="noopener noreferrer"
+            mx={2}
+            _hover={{ color: "gold" }}
+          >
+            <FaTwitter size={18} />
+          </Link>
+          <Link
+            href="mailto:your@email.com"
+            mx={2}
+            color="white"
+            _hover={{ color: "gold" }}
+          >
+            <FaEnvelope size={18} />
+          </Link>
+          <Link
+            href="https://www.youtube.com/channel/yourchannel"
+            target="_blank"
+            rel="noopener noreferrer"
+            mx={2}
+            color="white"
+            _hover={{ color: "gold" }}
+          >
+            <FaYoutube size={18} />
+          </Link>
+        </Flex>
+        <Flex justify="center" mt={4}>
+          <Text color="white" fontSize="sm" textAlign="center">
+            PARTICIPATION IS POWER™
+          </Text>
+        </Flex>
+        <Flex justify="center" mt={4}>
+          <Text color="gray.400" fontSize="sm" textAlign="center" m="10px">
+            Commission-free trading of stocks, <Text display={"inline"} color="gold">ETFs and options refers to $0 commissions for Tradehub Financial</Text> self-directed individual cash or margin brokerage accounts that trade U.S. listed securities and certain OTC securities electronically. Keep in mind, other fees such as trading (non-commission) fees, Gold subscription fees, wire transfer fees, and paper statement fees may apply to your brokerage account. Please see Tradehub Financial’s Fee Schedule to learn more.
+          </Text>
+        </Flex>
+        <Flex justify="center" mt={4}>
+          <Text color="gray.400" fontSize="sm" textAlign="center">
+            © 2023 Tradehub. All rights reserved.
+          </Text>
+        </Flex>
+      </Flex>
+    </Box>
   );
 }
+
+export default Footer;
