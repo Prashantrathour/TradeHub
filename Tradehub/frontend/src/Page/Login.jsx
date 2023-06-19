@@ -1,12 +1,41 @@
 
 
+
+// export default function Login() {
+//   return (
+//     <div className="main" id="main">
+//       <div className="child1">
+//         <img
+//           src="https://cdn.robinhood.com/assets/generated_assets/webapp/632fcb3e7ed928b2a960f3e003d10b44.jpg"
+//           alt="oso"
+//         />
+//       </div>
+
+//       <div className="robin">
+//         <h4 className="robinhood">Login To Robinhood</h4>
+//         <div className="form">
+//           <form action="">
+//             <div className="form-child">
+//               <label htmlFor="name"> Email </label>
+//               <input className="email" type="text" name="email" />
+//             </div>
+//             <div className="form-child">
+//               <label htmlFor="password"> Password </label>
+//               <input className="password" type="password" name="password" />
+//             </div>
+//             <div className="form-child1">
+//               <input type="checkbox" />
+//               <label htmlFor="">
+//                 <span> Keep me logged in for up to 30 days </span>
+//               </label>
+//             </div>
+
 import React, { useState } from "react";
 import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Image, Input, Link, Text, useToast } from "@chakra-ui/react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaLock, FaUser, FaQuestionCircle } from "react-icons/fa";
 import { RiAccountPinBoxLine } from "react-icons/ri";
 import axios from "axios";
-
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -25,13 +54,15 @@ export default function Login() {
     try {
       // Make an API request using axios or any other HTTP library
       const response = await axios.post(`${process.env.REACT_APP_BASEURL}/users/login`, data);
+      console.log(response.data)
       const { token } = response.data;
 
       // Store the token in local storage
       localStorage.setItem("token", token);
+      localStorage.setItem("user", response.data.user);
       toast({
         title: response.data.msg,
-        description: "Login Succesfully",
+        description: `${response.data.user}-Login Succesfully`,
         status: "success",
         duration: 5000,
         isClosable: true,

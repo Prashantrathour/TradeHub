@@ -7,16 +7,18 @@ const auth = (req,res,next) => {
         try{
             const decoded = jwt.verify(token, process.env.secret)
             if(decoded){
-                req.user = { userID: decoded.userID };
+                req.body.user =   decoded.user ;
+                req.body.userID =  decoded.userID ;
+              
                 next()
             }else{
-                res.json({msg:"Not Authorized"})
+                res.status(404).json({error:"Not Authorized"})
             }
         }catch(err){
-            res.json({error:err.message})
+            res.status(404).json({error:err.message})
         }
     }else{
-        res.json({msg:"Please Login!"})
+        res.status(404).json({error:"Please Login First!"})
     }
 }
 
