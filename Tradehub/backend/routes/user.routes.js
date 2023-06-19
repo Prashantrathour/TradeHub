@@ -61,7 +61,7 @@ userRouter.post("/login", async (req, res) => {
                 { userID: user._id, user: user.firstName },
                 process.env.secret
               );
-              res.json({ msg: "Logged In!", token });
+              res.json({ msg: "Logged In!", token,user:user.firstName });
             } else {
                 res.status(400).json({ msg: "Wrong Credentials" });
             }
