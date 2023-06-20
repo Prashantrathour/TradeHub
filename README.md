@@ -17,7 +17,7 @@ Welcome to the Stock Exchange Website project! This web application allows users
 
 1. **Sign Up**: Users can create a new account by providing their information and credentials.
 2. **Log In**: Existing users can log in to their accounts using their credentials.
-3. **Demat Account**: Users can create a demat account to hold their stocks and track their investments.
+3. **Demat Account**: Users can create a Demat account to hold their stocks and track their investments.
 4. **Portfolio Management**: Users can maintain their portfolio by adding, updating, and removing stocks.
 5. **Stock Purchase**: Users can buy stocks from the stock exchange.
 6. **Stock Information**: Users can access real-time stock information, including prices, charts, and company details.
@@ -39,7 +39,7 @@ To run this project locally, make sure you have the following prerequisites inst
 - Prashant Rathour
 - Devshruti
 - Shahid Raza
-- Akash Chaurasiya
+
 # Objectives
 The main objectives of this project are:
 
