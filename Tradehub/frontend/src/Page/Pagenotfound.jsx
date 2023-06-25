@@ -1,6 +1,7 @@
 import { Link as RouterLink } from 'react-router-dom';
-import { Box, Container, Heading, Text, Link, Icon } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, Link, Icon, Image } from '@chakra-ui/react';
 import { FiAlertTriangle } from 'react-icons/fi';
+import { FaHome } from 'react-icons/fa';
 
 const NotFoundPage = () => {
   return (
@@ -13,9 +14,10 @@ const NotFoundPage = () => {
         <Text>
           Sorry, the page you are looking for does not exist.
         </Text>
-        <Text>
-          Go back to the <Link as={RouterLink} to="/">home page</Link>.
+        <Text textAlign={"center"} >
+          Go back to the <Link  as={RouterLink} to="/"><strong color='green'>Home Page</strong></Link>.
         </Text>
+        <Image src='https://img.freepik.com/free-vector/404-error-with-people-holding-numbers-concept-illustration_114360-7903.jpg?size=626&ext=jpg&ga=GA1.2.1215260059.1683710952&semt=ais'/>
       </Box>
     </Container>
   );

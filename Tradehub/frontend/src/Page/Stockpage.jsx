@@ -17,35 +17,29 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { stock_get } from '../Redux/getstock/action';
+import NoDataFoundPage from './NodataFoundpage';
+import StockDataLoader from './Loader';
 
 const StocksPage = () => {
-  const [stocks, setStocks] = useState([]);
+  const dispatch=useDispatch()
+  const {stockdata,isloading,isError,page,totalpage,limit}=useSelector((store)=>store.getstockreducer)
+  const navigate=useNavigate()
   const [filterSymbol, setFilterSymbol] = useState('');
   const [filterIndustry, setFilterIndustry] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  
   const [stocksPerPage] = useState(10);
-  const [isLoading, setIsLoading] = useState(true);
+ 
 
   useEffect(() => {
-    fetchStocks();
-  }, [currentPage]); // Trigger fetchStocks() whenever currentPage changes
+   
+    dispatch(stock_get(stocksPerPage,currentPage))
+  }, [currentPage]);
 
-  const fetchStocks = async () => {
-    setIsLoading(true);
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BASEURL}/stocks?limit=${stocksPerPage}&page=${currentPage}`
-      );
-      setStocks(response.data.result);
-      setTotalPages(response.data.totalpage);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-      setIsLoading(false);
-    }
-  };
+
 
   const handleFilterSymbolChange = (event) => {
     setFilterSymbol(event.target.value);
@@ -59,7 +53,7 @@ const StocksPage = () => {
     setCurrentPage(pageNumber);
   };
 
-  const filteredStocks = stocks?.filter((stock) => {
+  const filteredStocks = stockdata?.filter((stock) => {
     if (filterSymbol && stock.symbol.toLowerCase().indexOf(filterSymbol.toLowerCase()) === -1) {
       return false;
     }
@@ -73,9 +67,11 @@ const StocksPage = () => {
   });
 
   const colorMode = useColorModeValue('green.500', 'red.500');
-
+if(isError){
+  navigate("/error")
+}
   return (
-    <Container maxW="container.lg" mt={10}>
+    <Container maxW="container.lg" mt={20}>
       <Box mb={5}>
         <Input
           placeholder="Filter by symbol"
@@ -104,17 +100,18 @@ const StocksPage = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {isLoading ? (
+            {isloading ? (
               <Tr>
                 <Td colSpan={8} textAlign="center">
-                  <Spinner size="sm" />
+                  {/* <Spinner size="sm" /> */}
+                  <StockDataLoader/>
                 </Td>
               </Tr>
             ) : (
               filteredStocks?.map((stock) => (
                 <Tr key={stock.symbol}>
                   <Td>{stock.symbol}</Td>
-                  <Td style={{ whiteSpace: 'nowrap', overflowX: 'scroll' }}>{stock.companyName}</Td>
+                  <Td style={{ whiteSpace: 'nowrap', overflow:"clip" }}>{stock.companyName}</Td>
                   <Td>{stock.marketCap}</Td>
                   <Td>
                     <Text color={stock.stockChange.includes('+') ? 'green.500' : 'red.500'}>
@@ -140,12 +137,12 @@ const StocksPage = () => {
           </Tbody>
         </Table>
       </Box>
-      {!isLoading && filteredStocks.length === 0 && (
+      {!isloading && filteredStocks.length === 0 && (
         <Box mt={4}>
-          <Text>No stocks found.</Text>
+          <NoDataFoundPage/>
         </Box>
       )}
-      {!isLoading && (
+      {!isloading && (
         <Flex justify="center" mt={4}>
           <Button
             key="previous"
@@ -157,14 +154,14 @@ const StocksPage = () => {
           >
             Previous
           </Button>
-         
+         <Button isDisabled   variant="outline">{page}</Button>
           <Button
             key="next"
             variant="outline"
-            colorScheme={currentPage === totalPages ? 'gray' : colorMode}
+            colorScheme={currentPage === totalpage ? 'gray' : colorMode}
             onClick={() => handlePaginationClick(currentPage + 1)}
             mx={1}
-            isDisabled={currentPage === totalPages}
+            isDisabled={currentPage === totalpage}
           >
             Next
           </Button>

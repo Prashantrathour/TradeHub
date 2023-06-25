@@ -1,7 +1,7 @@
 import { Box, Text, Fade, Button } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 const stocks = [
   { id: 1, name: "UBER", price: 41.09, change: "-0.51%" },
   { id: 2, name: "SBUX", price: 99.99, change: "+0.43%" },
@@ -28,7 +28,8 @@ const stocks = [
 function TopStockPage() {
   const [page, setPage] = useState(1);
   const [selectedStock, setSelectedStock] = useState(null);
-
+  const navigate=useNavigate()
+let [searchParams, setSearchParams] = useSearchParams();
   const stocksPerPage = 5;
   const startIndex = (page - 1) * stocksPerPage;
   const endIndex = startIndex + stocksPerPage;
@@ -36,6 +37,7 @@ function TopStockPage() {
 
   const handleStockClick = (stock) => {
     setSelectedStock(stock);
+   
   };
 
   const handleNextPage = () => {
@@ -45,7 +47,9 @@ function TopStockPage() {
   const handlePreviousPage = () => {
     setPage((prevPage) => prevPage - 1);
   };
-
+useEffect(()=>{
+  
+},[selectedStock])
   return (
     <Box p="4">
       <Text fontSize="2xl" fontWeight="bold" mb="4" textAlign="center">

@@ -1,27 +1,25 @@
 import React from "react";
 import {
-  BUY_STOCK_failure,
-  BUY_STOCK_request,
-  BUY_STOCK_success,
+  GET_STOCK_failure,
+  GET_STOCK_request,
+  GET_STOCK_success,
 } from "./actiontype";
 
 const initialstate = {
-//   stockdata: {
-//     stockSymbol: "",
-//     averagePrice: "",
-//     quantity: "",
-//   },
+  stockdata:[],
   isloading: false,
   isError: false,
-  msg: "",
+  page: 1,
+  totalpage: null,
+  limit: null
 };
 const reducer = (state = initialstate, { type, payload }) => {
   switch (type) {
-    case BUY_STOCK_request:
+    case GET_STOCK_request:
       return { ...state, isloading: true };
-    case BUY_STOCK_success:
-      return { ...state, isloading: false, msg:payload };
-    case BUY_STOCK_failure:
+    case GET_STOCK_success:
+      return { ...state,isError: false, isloading: false, stockdata:payload.data.result,page:payload.data.page,limit:payload.data.limit,totalpage:payload.data.totalpage };
+    case GET_STOCK_failure:
       return { ...state, isloading: false, isError: true,msg:payload };
 
     default:

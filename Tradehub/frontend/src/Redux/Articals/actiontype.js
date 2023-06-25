@@ -1,0 +1,3 @@
+export const GET_ARTICALS_request="GET_ARTICALS_request"
+export const GET_ARTICALS_success="GET_ARTICALS_success"
+export const GET_ARTICALS_failure="GET_ARTICALS_failure"

@@ -24,25 +24,26 @@ import {
   Avatar,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isMobile = useBreakpointValue({ base: true, md: false });
   const isTablet = useBreakpointValue({ base: false, md: true });
-  const [user, setuser] = useState(null);
+  const [user, setuser] = useState(Cookies.get("user"));
 
 
   const logout=()=>{
-    localStorage.setItem('user',"")
-    localStorage.setItem('token',"")
+    Cookies.remove("token")
+    Cookies.remove("user")
     setuser("")
   }
+  const user1 = Cookies.get("user");
   useEffect(() => {
-    const user = localStorage.getItem("user");
     if (user) {
-      setuser(user);
+      setuser(user1);
     }
-  }, []);
+  }, [user1]);
   return (
     <>
       <Box

@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import React from 'react'
-import StockExchangeGraph from '../components/Stockexchangegraph'
+import StockExchangeGraph from './Stockexchangegraph'
 import StocksPage from './Stockpage'
 
 function Home() {

@@ -1,6 +1,6 @@
 import { Box, Button, Heading, Input } from "@chakra-ui/react";
 import React from "react";
-import Article from "./Artical";
+import Article from "../Components/Artical";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 
 function Snacks() {

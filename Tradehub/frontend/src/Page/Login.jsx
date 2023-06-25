@@ -1,65 +1,57 @@
-
-
-
-// export default function Login() {
-//   return (
-//     <div className="main" id="main">
-//       <div className="child1">
-//         <img
-//           src="https://cdn.robinhood.com/assets/generated_assets/webapp/632fcb3e7ed928b2a960f3e003d10b44.jpg"
-//           alt="oso"
-//         />
-//       </div>
-
-//       <div className="robin">
-//         <h4 className="robinhood">Login To Robinhood</h4>
-//         <div className="form">
-//           <form action="">
-//             <div className="form-child">
-//               <label htmlFor="name"> Email </label>
-//               <input className="email" type="text" name="email" />
-//             </div>
-//             <div className="form-child">
-//               <label htmlFor="password"> Password </label>
-//               <input className="password" type="password" name="password" />
-//             </div>
-//             <div className="form-child1">
-//               <input type="checkbox" />
-//               <label htmlFor="">
-//                 <span> Keep me logged in for up to 30 days </span>
-//               </label>
-//             </div>
-
-import React, { useState } from "react";
-import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Image, Input, Link, Text, useToast } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Image,
+  Input,
+  Link,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaLock, FaUser, FaQuestionCircle } from "react-icons/fa";
 import { RiAccountPinBoxLine } from "react-icons/ri";
 import axios from "axios";
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loginuser,
+  setLoginStatus,
+  setToken,
+  setUser,
+} from "../Redux/uselogin/action";
+import Cookies from "js-cookie";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const toast = useToast();
+  const dispatch = useDispatch();
+  const userdata = useSelector((store) => store.loginreducer);
+  // Prepare the data object to be sent in the request
+  const data = {
+    email,
+    password,
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Prepare the data object to be sent in the request
-    const data = {
-      email,
-      password
-    };
-
+    const getresponse = dispatch(loginuser(data));
     try {
-      // Make an API request using axios or any other HTTP library
-      const response = await axios.post(`${process.env.REACT_APP_BASEURL}/users/login`, data);
-      console.log(response.data)
-      const { token } = response.data;
+      const response = await getresponse;
+      Cookies.set("token", response.data.token);
 
-      // Store the token in local storage
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", response.data.user);
+      // Set the login status in cookies
+      Cookies.set("isLoggedIn", true);
+      Cookies.set("user", response.data.user);
+      console.log(response);
+      dispatch(setToken(response.data.token));
+      dispatch(setUser(response.data.user));
+      dispatch(setLoginStatus(true, response.data.msg));
       toast({
         title: response.data.msg,
         description: `${response.data.user}-Login Succesfully`,
@@ -68,23 +60,30 @@ export default function Login() {
         isClosable: true,
       });
       setTimeout(() => {
-        navigate("/")
+        navigate("/");
       }, 5000);
-      console.log("Logged in successfully");
     } catch (error) {
-      
+      dispatch(setLoginStatus(false, error.response.data.msg));
       toast({
-        title:error.response.data.msg,
+        title: error.response.data.msg,
         description: "Logged in Unsuccessful",
         status: "error",
         duration: 5000,
         isClosable: true,
       });
+      if(error.response.data.newuser){
+        setTimeout(() => {
+          navigate("/signup");
+        }, 5000);
+      }
     }
   };
-
+  useEffect(() => {
+    if(Cookies.get("token")){
+      navigate("/"); 
+    }
+  }, []);
   return (
-
     <Flex
       direction={{ base: "column-reverse", md: "row" }}
       align="center"
@@ -93,13 +92,13 @@ export default function Login() {
       px={4}
       bg="gray.50"
     >
-      <Flex flex="1" py={8} flexDirection={["column","column","row","row"]}>
-        <Flex justify="center" mb={8} >
+      <Flex flex="1" py={8} flexDirection={["column", "column", "row", "row"]}>
+        <Flex justify="center" mb={8}>
           <Image
             src="https://cdn.robinhood.com/assets/generated_assets/webapp/632fcb3e7ed928b2a960f3e003d10b44.jpg"
             alt="oso"
-           maxWidth={"100%"}
-           maxHeight={"600px"}
+            maxWidth={"100%"}
+            maxHeight={"600px"}
             objectFit={"cover"}
           />
         </Flex>
@@ -111,14 +110,22 @@ export default function Login() {
             <FormLabel>Email</FormLabel>
             <Flex align="center">
               <FaUser size={18} color="gray.400" mr={2} />
-              <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </Flex>
           </FormControl>
           <FormControl id="password" mb={4}>
             <FormLabel>Password</FormLabel>
             <Flex align="center">
               <FaLock size={18} color="gray.400" mr={2} />
-              <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <Input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </Flex>
           </FormControl>
           <Flex align="center" mb={4}>
@@ -127,15 +134,30 @@ export default function Login() {
               Keep me logged in for up to 30 days
             </Text>
           </Flex>
-          <Flex direction={{ base: "column", md: "row" }} justify="space-between" mb={4}>
-            <Link color="blue.500" fontSize="sm" fontWeight="bold" mb={{ base: 2, md: 0 }}>
+          <Flex
+            direction={{ base: "column", md: "row" }}
+            justify="space-between"
+            mb={4}
+          >
+            <Link
+              color="blue.500"
+              fontSize="sm"
+              fontWeight="bold"
+              mb={{ base: 2, md: 0 }}
+            >
               Forget your Password?
             </Link>
             <Link color="blue.500" fontSize="sm" fontWeight="bold">
               Forget your Email Address?
             </Link>
           </Flex>
-          <Button colorScheme="blue" size="lg" width="full" mb={4} onClick={handleSubmit}>
+          <Button
+            colorScheme="blue"
+            size="lg"
+            width="full"
+            mb={4}
+            onClick={handleSubmit}
+          >
             Log In
           </Button>
           <Text textAlign="center">
@@ -159,7 +181,5 @@ export default function Login() {
         </Box>
       </Flex>
     </Flex>
-
   );
 }
-
