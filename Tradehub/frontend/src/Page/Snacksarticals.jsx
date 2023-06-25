@@ -6,11 +6,11 @@ import { ArrowForwardIcon } from "@chakra-ui/icons";
 function Snacks() {
   return (
     <Box bg="#E5F8F6">
-      <Box color="#FF4747" p="20px" >
+      <Box color="#FF4747" p="20px"   m="10px" textAlign="center">
         <Heading fontSize="100px" fontWeight={"1000"}  textOverflow={"revert-layer"}>Your daily dose of financial news.</Heading>
       </Box>
       <Box>
-        <Heading fontSize={"20px"} fontWeight={"400"} textOverflow={"revert-layer"}>
+        <Heading ml="20px" fontSize={"20px"} fontWeight={"400"} textOverflow={"revert-layer"}>
         The 3-minute newsletter with fresh takes on the financial news you need to start your day.
         </Heading>
       </Box>

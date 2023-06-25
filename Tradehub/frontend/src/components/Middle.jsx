@@ -35,7 +35,7 @@ const Middle = () => {
 
   return (
     <div>
-      <Box bg="black" p={5}>
+      <Box bg="black" p={5} textAlign="center">
         <Divider mt={-6} borderColor="gold" />
         <Text color="white" fontWeight="bold" fontSize="100px">
           Earn{" "}
