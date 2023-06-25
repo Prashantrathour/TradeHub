@@ -110,7 +110,7 @@ dematRouter.post("/buy", async (req, res) => {
     const dematAccount = await DematModel.findOne({ userID });
 
     if (!dematAccount) {
-      return res.status(404).json({ error: "Demat account not found Please create Demate account" });
+      return res.status(404).json({ msg: "Demat account not found Please create Demate account" });
     }
 
     dematAccount.holdings.push({
@@ -124,9 +124,9 @@ dematRouter.post("/buy", async (req, res) => {
 
     res
       .status(200)
-      .json({updated, error: "Congratulations you have purchase stock" });
+      .json({updated, msg: "Congratulations you have purchase stock" });
   } catch (error) {
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ msg: "Server error" });
   }
 });
 

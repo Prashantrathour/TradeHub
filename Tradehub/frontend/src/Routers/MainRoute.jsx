@@ -2,9 +2,9 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "../Page/Home";
 import StocksPage from "../Page/Stockpage";
-import StockExchangeGraph from "../components/Stockexchangegraph";
+// import StockExchangeGraph from "../components/Stockexchangegraph";
 import StockBuyPage from "../Page/StockbuyPage";
-import Middle from "../components/Middle";
+import Middle from "../Components/Middle.jsx";
 import SupportPage from "../Page/Supportpage";
 import Learn from "../Page/Learn";
 import Snacks from "../Page/Snacksarticals";
@@ -14,6 +14,9 @@ import CreateDematAccountPage from "../Page/CreateDemateAccount";
 import StockSellingPage from "../Page/SellStock";
 import { Heading } from "@chakra-ui/react";
 import NotFoundPage from "../Page/Pagenotfound";
+import StockExchangeGraph from "../Page/Stockexchangegraph.jsx";
+import ErrorPage from "../Page/Errorpage";
+import NoDataFoundPage from "../Page/NodataFoundpage";
 
 
 
@@ -21,6 +24,8 @@ function MainRoute() {
   return (
     <Routes>
       <Route path="/" element={<Middle />} />
+      <Route path="/error" element={<ErrorPage />} />
+      <Route path="/nodatafound" element={<NoDataFoundPage />} />
       <Route path="/invest" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />

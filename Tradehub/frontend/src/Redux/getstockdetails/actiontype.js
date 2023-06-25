@@ -1,0 +1,3 @@
+export const GET_STOCKDETAILS_request="GET_STOCKDETAILS_request"
+export const GET_STOCKDETAILS_success="GET_STOCKDETAILS_success"
+export const GET_STOCKDETAILS_failure="GET_STOCKDETAILS_failure"

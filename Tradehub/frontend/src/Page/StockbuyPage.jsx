@@ -34,7 +34,17 @@ import {
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import CompanyReview from "./Comapnyreview";
+import { useDispatch, useSelector } from "react-redux";
+import { buystock_post } from "../Redux/buystock/action";
 
+import {
+
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalFooter,
+} from "@chakra-ui/react";
+import PaymentPopup from "./PPaaymentpage";
 // Remove the type information for the theme and options
 const theme = extendTheme({
   colors: {
@@ -53,12 +63,22 @@ ChartJS.register(
   Legend,
   Tooltip
 );
-
 const StockBuyPage = () => {
   const [symbolstock, setSymbol] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [orderType, setOrderType] = useState("");
   const [stockData, setstockdata] = useState(1);
+  const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpenPopup = () => {
+    setIsOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsOpen(false);
+  };
+
   const { symbol } = useParams();
   const toast = useToast();
   const fetchStock = async () => {
@@ -97,55 +117,22 @@ const StockBuyPage = () => {
     }
   };
 
-  const handleQuantityChange = (event) => {
+  const handleQuantityChange = async (event) => {
     setQuantity(event.target.value);
   };
 
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Prepare the data object to be sent in the request
-    const data = {
-      stockSymbol: symbol,
-      quantity: quantity,
-      averagePrice: (+stockData),
-    };
-    const token =localStorage.getItem("token")
-
-  const config = {
-    headers: { Authorization: `Bearer ${token}` }
+  };
   
-  };
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASEURL}/demat/buy`,
-        data,config
-      );
-console.log(response.data,data);
-      toast({
-        title: response.data.msg,
-        description: "buy Succesfully",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-    } catch (error) {
-      console.log(error)
-      toast({
-        title: error.response.data.error,
-        description: "Buying stock Unsuccessful",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-  };
 
   useEffect(() => {
     fetchStock();
     fetchtargetStock();
     setSymbol(symbol);
-  }, []);
+  }, [symbol]);
 
   return (
     <Box
@@ -189,14 +176,38 @@ console.log(response.data,data);
               <Text fontWeight="bold" fontSize="lg">
                 Total Price: ${quantity * stockData || 0}
               </Text>
-              <Button type="submit" colorScheme="brand" variant="solid">
+              <Button
+                onClick={handleOpenPopup}
+                type="submit"
+                colorScheme="brand"
+                variant="solid"
+              >
                 Buy Stock
               </Button>
+
+              {/* Payment Popup */}
+              <Modal isOpen={isOpen} onClose={handleClosePopup}>
+                <ModalOverlay />
+                <ModalContent>
+                  <PaymentPopup
+                    onClose={handleClosePopup}
+                   
+                    stockdata={{stockSymbol:symbol,quantity: quantity,averagePrice: +stockData}}
+                  />
+                  <ModalFooter>
+                    <Button onClick={handleClosePopup}>Close</Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
             </Stack>
           </form>
         </Box>
 
-        <Flex width="100%" mt={8} flexDirection={["column","column","column","row"]}>
+        <Flex
+          width="100%"
+          mt={8}
+          flexDirection={["column", "column", "column", "row"]}
+        >
           <Box width={"50%"} m="10">
             <Box>
               <Image

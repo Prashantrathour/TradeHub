@@ -1,137 +1,139 @@
-.footer {
+
+.footer{
     margin-top: 10px;
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid black;
+    // background-color: aqua;
     height: 90px;
-  }
-  
-  .verticle {
-    position: absolute;
-    border-left: 1px solid black;
-    height: 850px;
-    bottom: -0.5px;
-    position: sticky;
-    margin-left: 50%;
-  }
-  
-  .foottop {
-    margin-left: 20px;
-    display: flex;
-  }
-  
-  .follow {
-    margin-left: 90px;
-    display: flex;
-    position: absolute;
-    left: 50%;
-  }
-  
-  .space {
-    width: 300%;
-  }
-  
-  .footgrid ul {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .footgrid h3 {
-    margin-bottom: 10px;
-  }
-  
-  .footgrid li {
-    list-style: none;
-    margin-top: 10px;
-  }
-  
-  .fix {
+   
+    .verticle{
+        // border: 1px solid red;
+          position: absolute;
+        border-left: 1px solid black;
+            height: 850px;
+            //   right: 50%;
+            bottom: -0.5px;
+            position: sticky;
+           
+            
+        //   position: sticky;
+          margin-left: 50%;
+         
+         
+          
+    }
+    .foottop{
+        margin-left: 20px;
+        display: flex;
+        
+        .follow{
+             margin-left: 90px;
+            display: flex;
+            position: absolute;
+            left: 50%;
+        }
+        .space{
+            //  border: 1px solid yellow;
+             width: 300%;
+        }
+        a{
+            color: black;
+        }
+    }
+}
+.downsection{
+    // border: 1px solid yellow;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+     width: 55%;
+.footgrid{
+    
+    li{
+        list-style: none;
+        margin-top: 10px;
+    }
+    .disf{
+        display: flex;
+    }
+    
+}
+.fix {
     position: absolute;
     left: 52%;
-  }
-  
-  .midsection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .midsection h3 {
-    margin-left: 20px;
-  }
-  
-  .midsection .downsection {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    width: 55%;
-  }
-  
-  @media screen and (max-width: 600px) {
+}
+}
+
+/* For screens smaller than 600px */
+@media screen and (max-width: 600px) {
     .footer {
-      height: auto;
+        height: auto;
     }
-  
+
     .verticle {
-      display: none;
+        display: none;
     }
-  
+
     .foottop {
-      flex-direction: column;
-      align-items: center;
-      margin-left: 0;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
     }
-  
+
     .follow {
-      margin-left: 0;
-      position: static;
-      justify-content: center;
+        margin-left: 0;
+        position: static;
+        justify-content: center;
+        
     }
-  
+
     .space {
-      display: none;
+        // width: 100%;
+        // display: flex;
+        // flex-direction: column;
+        display: none;
     }
-  
+
     .footgrid {
-      grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
-  
+
     .downsection {
-      width: 100%;
-      grid-template-columns: repeat(1, 1fr);
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
     }
-  }
-  
-  @media screen and (min-width: 601px) {
+}
+
+/* For screens larger than 600px */
+@media screen and (min-width: 601px) {
     .footer {
-      height: 90px;
+        height: 90px;
     }
-  
+
     .verticle {
-      display: block;
+        display: block;
     }
-  
+
     .foottop {
-      flex-direction: row;
-      align-items: flex-start;
-      margin-left: 20px;
+        flex-direction: row;
+        align-items: flex-start;
+        margin-left: 20px;
     }
-  
+
     .follow {
-      margin-left: 90px;
-      position: absolute;
-      left: 50%;
+        margin-left: 90px;
+        position: absolute;
+        left: 50%;
     }
-  
+
     .space {
-      width: 50%;
+        width: 50%;
     }
-  
+
     .footgrid {
-      grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
-  
+
     .downsection {
-      width: 55%;
-      grid-template-columns: repeat(4, 1fr);
+        width: 55%;
+        grid-template-columns: repeat(4, 1fr);
     }
-  }
-  
+}
