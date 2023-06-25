@@ -1,14 +1,13 @@
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import "./App.css";
 import MainRoute from "./Routers/MainRoute";
-import Footer from "../src/Optional/Footer";
+import Footer from "../src/Optional/Footer"
 import Navbar from "./Page/Navbar.jsx";
-import PaymentPage from "./Page/PPaaymentpage";
-import Cookies from "js-cookie";
+
 import { useEffect, useState } from "react";
 import { CirclesWithBar } from "react-loader-spinner";
 function App() {
-  const token = Cookies.get("token");
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
