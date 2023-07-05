@@ -12,6 +12,7 @@ export const stock_get = (stocksPerPage,currentPage) => async (dispatch) => {
     
      dispatch(getstockSuccess(response)) 
     }).catch((error)=>{
+      console.log(error)
         dispatch(getstockFailure())
     })
  

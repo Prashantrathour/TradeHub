@@ -1,0 +1,3 @@
+export const dematAccount_UPDATE_request="dematAccount_UPDATE_request"
+export const dematAccount_UPDATE_success="dematAccount_UPDATE_success"
+export const dematAccount_UPDATE_failure="dematAccount_UPDATE_failure"

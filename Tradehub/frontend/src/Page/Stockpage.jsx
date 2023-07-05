@@ -68,6 +68,7 @@ const StocksPage = () => {
 
   const colorMode = useColorModeValue('green.500', 'red.500');
 if(isError){
+  
   navigate("/error")
 }
   return (

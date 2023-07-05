@@ -15,6 +15,7 @@
     "chartjs-adapter-moment": "^1.0.1",
     "date-fns": "^2.30.0",
     "faker": "^6.6.6",
+    "firebase": "^9.23.0",
     "framer-motion": "^10.12.17",
     "fs": "^0.0.1-security",
     "js-cookie": "^3.0.5",
