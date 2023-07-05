@@ -5,9 +5,10 @@ const dematSchema = new mongoose.Schema({
   accountHolderName: String,
   balance: Number,
   email:String,
-  mobilenumber:Number,
+  mobilenumber:String,
   user:String,
   userID:String,
+  verificationStatus:Boolean,
   holdings: [
     {
       stockSymbol: String,

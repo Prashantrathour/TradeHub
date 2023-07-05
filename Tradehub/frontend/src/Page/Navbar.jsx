@@ -36,6 +36,7 @@ const Navbar = () => {
   const logout=()=>{
     Cookies.remove("token")
     Cookies.remove("user")
+    Cookies.remove("Verify_status")
     setuser("")
   }
   const user1 = Cookies.get("user");
@@ -43,7 +44,7 @@ const Navbar = () => {
     if (user) {
       setuser(user1);
     }
-  }, [user1]);
+  }, []);
   return (
     <>
       <Box

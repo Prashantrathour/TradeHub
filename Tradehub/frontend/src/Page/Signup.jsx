@@ -32,10 +32,10 @@ export default function Signup() {
         `${process.env.REACT_APP_BASEURL}/users/register`,
         data
       );
-      console.log(res.data);
+ 
       //  Handle the response as needed
       toast({
-        title: res.data.msg,
+        title: res?.data.msg,
         description: "Login to continue...",
         status: "success",
         duration: 5000,
@@ -45,16 +45,16 @@ export default function Signup() {
         navigate("/login");
       }, 5000);
     } catch (error) {
-      console.log(error.response.data.msg);
+      
       toast({
-        title: error.response.data.msg,
+        title: error?.response?.data.msg||error.message,
         description: "please enter write credentials...",
         status: "warning",
         duration: 5000,
         isClosable: true,
       });
 
-      if (error.response.data.state) {
+      if (error?.response?.data.state) {
         setTimeout(() => {
           navigate("/login");
         }, 2000);

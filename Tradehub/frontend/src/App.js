@@ -43,7 +43,9 @@ function App() {
         <ChakraProvider>
           <Navbar />
 
-          <Box mt="55px">
+          <Box width={"100%"} height={"100%"} mt="50px" backgroundImage={`url('https://img.freepik.com/free-vector/modern-banner-with-abstract-low-poly-design_1048-14340.jpg?size=626&ext=jpg&ga=GA1.2.1215260059.1683710952&semt=ais')`}
+      backgroundRepeat="no-repeat"
+      backgroundSize="cover">
             <MainRoute />
             <Footer />
           </Box>

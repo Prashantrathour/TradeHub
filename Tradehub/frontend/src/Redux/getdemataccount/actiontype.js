@@ -1,0 +1,3 @@
+export const GET_dematAccount_get_request="GET_dematAccount_get_request"
+export const GET_dematAccount_get_success="GET_dematAccount_get_success"
+export const GET_dematAccount_get_failure="GET_STOCK_failure"
