@@ -19,7 +19,10 @@ const dematSchema = new mongoose.Schema({
   transactions: [
     {
       transactionId: mongoose.Types.ObjectId,
-      date: Date,
+      date:  {
+        type: String,
+        default: () => new Date().toLocaleString()
+      },
       
       stockSymbol: String,
       quantity: Number,

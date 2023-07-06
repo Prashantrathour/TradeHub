@@ -17,21 +17,23 @@ import {
 } from "@chakra-ui/react";
 import {
   Chart as ChartJS,
-  LinearScale,
-  CategoryScale,
-  BarElement,
-  PointElement,
-  LineElement,
-  Legend,
-  Tooltip,
+  // LinearScale,
+  // CategoryScale,
+  // BarElement,
+  // PointElement,
+  // LineElement,
+  // Legend,LineController,ChartConfiguration,Title,
+  // Tooltip,
 } from "chart.js";
+import {  registerables } from 'chart.js';
+// import { Chart, ChartConfiguration, LineController, LineElement, PointElement, LinearScale, Title} from 'chart.js' 
 import {
   Chart,
   getDatasetAtEvent,
   getElementAtEvent,
   getElementsAtEvent,
 } from "react-chartjs-2";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import CompanyReview from "./Comapnyreview";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,6 +47,8 @@ import {
   ModalFooter,
 } from "@chakra-ui/react";
 import PaymentPopup from "./PPaaymentpage";
+import SuccessPopup from "../Components/PaymentSuccessPopUp";
+import Cookies from "js-cookie";
 // Remove the type information for the theme and options
 const theme = extendTheme({
   colors: {
@@ -55,21 +59,20 @@ const theme = extendTheme({
 });
 
 ChartJS.register(
-  LinearScale,
-  CategoryScale,
-  BarElement,
-  PointElement,
-  LineElement,
-  Legend,
-  Tooltip
+ ...registerables
 );
 const StockBuyPage = () => {
+  const token=Cookies.get("token")
+  const toast=useToast()
+  const { symbol } = useParams();
+  const navigate=useNavigate()
   const [symbolstock, setSymbol] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [orderType, setOrderType] = useState("");
+  
   const [stockData, setstockdata] = useState(1);
-  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+ 
 
   const handleOpenPopup = () => {
     setIsOpen(true);
@@ -79,8 +82,8 @@ const StockBuyPage = () => {
     setIsOpen(false);
   };
 
-  const { symbol } = useParams();
-  const toast = useToast();
+  
+  
   const fetchStock = async () => {
     const response = await axios.get(
       `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${
@@ -100,6 +103,19 @@ const StockBuyPage = () => {
     }
   };
   const fetchtargetStock = async () => {
+    var currentDate = new Date(); // Get the current date
+
+// Extract year, month, and day components from the current date
+var year = currentDate.getFullYear();
+var month = currentDate.getMonth() + 1; // Adding 1 since the month index starts from 0
+var day = currentDate.getDate();
+
+// Pad the month and day with leading zeros if needed
+var formattedMonth = month < 10 ? "0" + month : month;
+var formattedDay = day < 10 ? "0" + day : day;
+
+// Create the formatted date string
+var formattedDate = year + "-" + formattedMonth + "-" + formattedDay;
     try {
       const response = await axios.get(
         `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${
@@ -108,7 +124,7 @@ const StockBuyPage = () => {
       );
 
       const data =
-        response.data["Time Series (Daily)"]["2023-06-16"]["4. close"];
+        response.data["Time Series (Daily)"][formattedDate]["4. close"];
 
       console.log(data, symbol);
       setstockdata(data);
@@ -129,9 +145,25 @@ const StockBuyPage = () => {
   
 
   useEffect(() => {
+    if(!token){
+      toast({
+        title:"please login",
+        status:"warning",
+        duration: 3000,
+        isClosable: true,
+      })
+     
+        navigate("/login")
+        
+     
+     
+    }else{
+      
+  
     fetchStock();
     fetchtargetStock();
     setSymbol(symbol);
+    }
   }, [symbol]);
 
   return (
@@ -224,6 +256,7 @@ const StockBuyPage = () => {
             <CompanyReview symbol={symbol} />
           </Box>
         </Flex>
+        <SuccessPopup/>
       </ChakraProvider>
     </Box>
   );

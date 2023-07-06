@@ -23,6 +23,7 @@ import StockDataLoader from "./Loader";
 import Update_demate_account from "./Update_demate_account";
 import { dematAccount_UPDATEFailure, dematAccount_UPDATESuccess, dematAccount_update } from "../Redux/updatedemataccount.js/action";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const auth = getAuth(app);
 
@@ -30,6 +31,7 @@ const Verify_account = () => {
   const dematAccount = useSelector((store) => store.dematAccount_getreducer);
   const {loading,error,msg} = useSelector((store) => store.dematAccount_veriify_reducer);
   const [phone, setPhone] = useState("");
+  const navigate=useNavigate()
   const [editphone, seteditPhone] = useState(true);
   const [verifybtn, setverifybtn] = useState(false);
   const [verifyActbtn, setverifActybtn] = useState(false);
@@ -99,8 +101,7 @@ console.log(loading,error)
       {
         size: "invisible",
         callback: (response) => {
-          // reCAPTCHA solved, allow signInWithPhoneNumber.
-          // You can add your code here to execute after reCAPTCHA is solved.
+     
         },
       },
       auth
@@ -195,8 +196,13 @@ console.log(loading,error)
       verifyCode(verificationCode);
     }
   };
+  window.addEventListener("load",(e)=>{
+    console.log("load",e)
+    dispatch(dematAccount_get);
+  })
   useEffect(() => {
-    console.log("rander")
+
+    console.log("rander",dematAccount)
     dispatch(dematAccount_get);
     console.log(dematAccount)
     setPhone(dematAccount.data.mobilenumber)
@@ -232,11 +238,12 @@ console.log(loading,error)
           <InputGroup>
             <InputLeftAddon children="+91" />
             <Input
-              type="tel"
+              type="number"
               placeholder="Enter your phone number"
               value={phone}
+              required
               onChange={(e) => setPhone(e.target.value)}
-              isDisabled={editphone}
+              // isDisabled={editphone}
             />
           </InputGroup>
         </Box>
@@ -256,7 +263,7 @@ console.log(loading,error)
           Send OTP
         </Button>
         </Flex>
-       { verifybtn? <Box mt={4}>
+       { verifybtn ? < Box mt={4}>
           <InputGroup>
             <Input
               type="text"
@@ -266,7 +273,7 @@ console.log(loading,error)
             />
           </InputGroup> 
          <Flex gap="5px">
-         <Button colorScheme="green" isDisabled={!verifyActbtn} mt={4} onClick={handleVerifyOTP}>
+         <Button colorScheme="green" isDisabled={verifyActbtn} mt={4} onClick={handleVerifyOTP}>
           Verify OTP
         </Button>
         {verifyActbtn ?   <Button isLoading={loading} isDisabled={error} colorScheme="green" mt={4} onClick={handleVerifyAccount}>

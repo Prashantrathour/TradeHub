@@ -6,6 +6,7 @@ import "../Page/style/Signup.scss";
 import { useToast } from "@chakra-ui/react";
 import { warning } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 
 export default function Signup() {
@@ -41,6 +42,7 @@ export default function Signup() {
         duration: 5000,
         isClosable: true,
       });
+      Cookies.remove("Verify_status")
       setTimeout(() => {
         navigate("/login");
       }, 5000);
