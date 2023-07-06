@@ -36,7 +36,7 @@ console.log(article,isError,currentArticles)
     <Box>
    <Box>
   {currentArticles?.map((article) => (
-        <ArticlePage {...article} />
+        <ArticlePage key={Math.random()} {...article} />
       ))} 
 
       {/* Pagination */}

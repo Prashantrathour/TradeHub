@@ -32,13 +32,12 @@ const Navbar = () => {
   const isTablet = useBreakpointValue({ base: false, md: true });
   const [user, setuser] = useState(Cookies.get("user"));
 
+  const logout = () => {
+    Cookies.remove("token");
+    Cookies.remove("user");
 
-  const logout=()=>{
-    Cookies.remove("token")
-    Cookies.remove("user")
-    Cookies.remove("Verify_status")
-    setuser("")
-  }
+    setuser("");
+  };
   const user1 = Cookies.get("user");
   useEffect(() => {
     if (user) {
@@ -103,7 +102,7 @@ const NavLinks = () => (
   <Flex justifyContent={"space-between"} width={"30%"} m>
     <Menu isLazy>
       <MenuButton as={Button} colorScheme="white">
-        Stocks
+        Services
       </MenuButton>
       <MenuList color={"gold"} fontWeight={"600"} bg={"black"}>
         <MenuItem
@@ -125,6 +124,16 @@ const NavLinks = () => (
           bg={"black"}
         >
           Sell your Stocks
+        </MenuItem>
+        <MenuItem
+          as={RouterLink}
+          to="/history"
+          border={"1px solid gray"}
+          p="5px"
+          borderRadius={"2xl"}
+          bg={"black"}
+        >
+          check your transaction history
         </MenuItem>
         <MenuItem
           as={RouterLink}
@@ -150,8 +159,8 @@ const NavButton = ({ to, children }) => (
   </Button>
 );
 
-const AuthButtons = ({ user,logout }) => (
-  <Box >
+const AuthButtons = ({ user, logout }) => (
+  <Box>
     <Flex alignItems="center" boxSizing={"content-box"} margin={"auto"}>
       {!user ? (
         <NavLink to={"/login"}>
@@ -161,22 +170,27 @@ const AuthButtons = ({ user,logout }) => (
         </NavLink>
       ) : (
         <Flex>
-        <Flex _hover={{color:"gold"}}
-          gap={"-10"}
-         
-          justify={"center"}
-          flexDirection={"row"}
-        >
-          <Avatar alignSelf={"center"} size={"2xs"} />{" "}
-          <Button variant="ghost" colorScheme="white" mr={1}  position={"relative"}>
-            {user}
-          </Button>
-        </Flex>
-        <NavLink to={"#"}>
-          <Button onClick={logout}  variant="ghost" colorScheme="white" mr={2}>
-            Logout
-          </Button>
-        </NavLink>
+          <Flex
+            _hover={{ color: "gold" }}
+            gap={"-10"}
+            justify={"center"}
+            flexDirection={"row"}
+          >
+            <Avatar alignSelf={"center"} size={"2xs"} />{" "}
+            <Button
+              variant="ghost"
+              colorScheme="white"
+              mr={1}
+              position={"relative"}
+            >
+              {user}
+            </Button>
+          </Flex>
+          <NavLink to={"#"}>
+            <Button onClick={logout} variant="ghost" colorScheme="white" mr={2}>
+              Logout
+            </Button>
+          </NavLink>
         </Flex>
       )}
       <NavLink to="/demateaccount">
@@ -186,8 +200,8 @@ const AuthButtons = ({ user,logout }) => (
     </Flex>
   </Box>
 );
-const AuthButtonsmob = ({ user,logout }) => (
-  <Box alignItems="center" p="5px" margin={"auto"} >
+const AuthButtonsmob = ({ user, logout }) => (
+  <Box alignItems="center" p="5px" margin={"auto"}>
     <Flex>
       {!user ? (
         <NavLink to={"/login"}>
@@ -197,22 +211,28 @@ const AuthButtonsmob = ({ user,logout }) => (
         </NavLink>
       ) : (
         <Flex>
-        <Flex _hover={{color:"gold"}}
-          gap={"-10"}
-         
-          justify={"center"}
-          flexDirection={"column"}
-        >
-          <Avatar alignSelf={"center"} size={"sm"} />{" "}
-          <Button variant="ghost" colorScheme="white" mr={2}>
-            {user}
-          </Button>
-        </Flex>
-        <NavLink to={"#"}>
-          <Button onClick={logout}  mt="30px" variant="ghost" colorScheme="white" mr={2}>
-            Logout
-          </Button>
-        </NavLink>
+          <Flex
+            _hover={{ color: "gold" }}
+            gap={"-10"}
+            justify={"center"}
+            flexDirection={"column"}
+          >
+            <Avatar alignSelf={"center"} size={"sm"} />{" "}
+            <Button variant="ghost" colorScheme="white" mr={2}>
+              {user}
+            </Button>
+          </Flex>
+          <NavLink to={"#"}>
+            <Button
+              onClick={logout}
+              mt="30px"
+              variant="ghost"
+              colorScheme="white"
+              mr={2}
+            >
+              Logout
+            </Button>
+          </NavLink>
         </Flex>
       )}
     </Flex>
@@ -232,7 +252,7 @@ const AuthButtonsmob = ({ user,logout }) => (
   </Box>
 );
 
-const MobileDrawer = ({logout, user, isOpen, onClose }) => (
+const MobileDrawer = ({ logout, user, isOpen, onClose }) => (
   <ChakraDrawer isOpen={isOpen} placement="left" onClose={onClose}>
     <DrawerOverlay>
       <DrawerContent bg="gray.800" color="white">
@@ -242,7 +262,7 @@ const MobileDrawer = ({logout, user, isOpen, onClose }) => (
           <Stack spacing={4}>
             <Menu isLazy>
               <MenuButton as={Button} colorScheme="white">
-                Stocks
+                Services
               </MenuButton>
               <MenuList color={"gold"} fontWeight={"600"} bg={"black"}>
                 <MenuItem
@@ -264,6 +284,16 @@ const MobileDrawer = ({logout, user, isOpen, onClose }) => (
                   bg={"black"}
                 >
                   stocksellpage
+                </MenuItem>
+                <MenuItem
+                  as={RouterLink}
+                  to="/history"
+                  border={"1px solid gray"}
+                  p="5px"
+                  borderRadius={"2xl"}
+                  bg={"black"}
+                >
+                  check your transaction history
                 </MenuItem>
                 <MenuItem
                   as={RouterLink}

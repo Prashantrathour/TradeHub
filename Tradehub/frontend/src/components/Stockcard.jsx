@@ -38,8 +38,8 @@ function StockCard({ symbol }) {
     Description,
   } = data;
 
-  const truncatedDescription = Description.substring(0, 100);
-  const shouldShowMore = Description.length > 100 && !showFullDescription;
+  const truncatedDescription = Description&&Description?.substring(0, 100);
+  const shouldShowMore =Description&& (Description?.length > 100 && !showFullDescription);
 
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);

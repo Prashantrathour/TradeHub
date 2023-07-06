@@ -18,9 +18,12 @@ import { MdPayment } from "react-icons/md";
 import { FaCreditCard, FaUniversity, FaMobileAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { buystockFailure, buystockSuccess, buystock_post } from "../Redux/buystock/action";
+import SuccessPopup from "../Components/PaymentSuccessPopUp";
+import { useNavigate } from "react-router-dom";
 
 function PaymentPopup({ onClose, stockdata }) {
   const [update, setupdate] = useState(false);
+  const navigate=useNavigate()
   const dispatch = useDispatch();
   const storedata = useSelector((store) => store.buyreducer.msg);
   const alldata = useSelector((store) => store.buyreducer);
@@ -32,7 +35,13 @@ function PaymentPopup({ onClose, stockdata }) {
   // const handleTabChange = (index) => {
   //   setSelectedTab(index);
   // };
-  const handlePayment = async() => {
+  const [paymentStatus, setPaymentStatus] = useState(false);
+
+  const handlepayment = () => {
+    setPaymentStatus(true);
+  };
+  const handlePayment = async() => { 
+  
     try {
       const response=await  dispatch(buystock_post(stockdata))
       dispatch(buystockSuccess(response.data.msg));
@@ -43,7 +52,9 @@ function PaymentPopup({ onClose, stockdata }) {
         duration: 5000,
         isClosable: true,
       });
+      handlepayment()
     } catch (error) {
+      console.log(error)
       dispatch(buystockFailure(error.response.data.msg))
       toast({
         title: error.response.data.msg,
@@ -52,6 +63,12 @@ function PaymentPopup({ onClose, stockdata }) {
         duration: 5000,
         isClosable: true,
       });
+
+      if(error.response.data.verify){
+        setTimeout(() => {
+          navigate("/verify_account")
+        }, 1000);
+      }
     }
  
   };
@@ -81,13 +98,14 @@ function PaymentPopup({ onClose, stockdata }) {
               {/* Net Banking form */}
               <FormControl>
                 <FormLabel>Bank</FormLabel>
-                <Input type="text" placeholder="Enter bank name" />
+                <Input type="text" placeholder="Enter bank name" required/>
               </FormControl>
               <Button
                 leftIcon={<Icon as={MdPayment} />}
                 colorScheme="blue"
                 onClick={handlePayment}
                 w="100%"
+                isLoading={storedata_isLoading}
               >
                 Pay Now
               </Button>
@@ -98,15 +116,15 @@ function PaymentPopup({ onClose, stockdata }) {
               {/* Card form */}
               <FormControl>
                 <FormLabel>Card Number</FormLabel>
-                <Input type="text" placeholder="Enter card number" />
+                <Input type="text" placeholder="Enter card number" required />
               </FormControl>
               <FormControl>
                 <FormLabel>Expiry Date</FormLabel>
-                <Input type="text" placeholder="MM/YY" />
+                <Input type="text" placeholder="MM/YY" required />
               </FormControl>
               <FormControl>
                 <FormLabel>CVV</FormLabel>
-                <Input type="text" placeholder="Enter CVV" />
+                <Input type="text" placeholder="Enter CVV" required/>
               </FormControl>
               <Button
                 leftIcon={<Icon as={MdPayment} />}
@@ -116,6 +134,7 @@ function PaymentPopup({ onClose, stockdata }) {
               >
                 Pay Now
               </Button>
+              <SuccessPopup paymentStatus={paymentStatus} setPaymentStatus={setPaymentStatus} />
             </VStack>
           </TabPanel>
           <TabPanel>
@@ -123,7 +142,7 @@ function PaymentPopup({ onClose, stockdata }) {
               {/* UPI form */}
               <FormControl>
                 <FormLabel>UPI ID</FormLabel>
-                <Input type="text" placeholder="Enter UPI ID" />
+                <Input type="text" placeholder="Enter UPI ID" required/>
               </FormControl>
               <Button
                 leftIcon={<Icon as={MdPayment} />}

@@ -19,6 +19,7 @@ import ErrorPage from "../Page/Errorpage";
 import NoDataFoundPage from "../Page/NodataFoundpage";
 import Update_demate_account from "../Page/Update_demate_account";
 import Verify_account from "../Page/Verify-account";
+import HistoryPage from "../Page/Histortpage";
 
 
 
@@ -29,6 +30,7 @@ function MainRoute() {
       <Route path="/error" element={<ErrorPage />} />
       <Route path="/nodatafound" element={<NoDataFoundPage />} />
       <Route path="/verify_account" element={<Verify_account />} />
+      <Route path="/history" element={<HistoryPage />} />
       <Route path="/update_account" element={<Update_demate_account />} />
       <Route path="/invest" element={<Home />} />
       <Route path="/login" element={<Login />} />

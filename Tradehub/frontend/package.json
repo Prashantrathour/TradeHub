@@ -26,6 +26,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
     "react-loader-spinner": "^5.3.4",
+    "react-lottie": "^1.2.3",
     "react-plotlyjs": "^0.4.4",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.13.0",
@@ -60,6 +61,7 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
+    ],
+    "homepage":"."
   }
 }

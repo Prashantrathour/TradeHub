@@ -102,6 +102,24 @@ dematRouter.get("/holding", async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
+dematRouter.get("/transactions", async (req, res) => {
+  try {
+    const userId = req.body.userID;
+
+    // Find the demat account associated with the user ID
+    const dematAccount = await DematModel.findOne({ user: userId });
+
+    if (!dematAccount) {
+      return res.status(404).json({ error: "Demat account not found" });
+    }
+
+    const transactions = dematAccount.transactions;
+    // const find=holding.find(hold=>hold.stockSymbol==req.params.symbol)
+    res.json(transactions);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
 
 // Delete demat account for the logged-in user
 dematRouter.get("/account/:id", async (req, res) => {
@@ -121,7 +139,6 @@ dematRouter.get("/account/:id", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-
 dematRouter.post("/buy", async (req, res) => {
   try {
     const { userID, stockSymbol, quantity, averagePrice } = req.body;
@@ -131,17 +148,21 @@ dematRouter.post("/buy", async (req, res) => {
     if (!dematAccount) {
       return res
         .status(404)
-        .json({ msg: "Demat account not found Please create Demate account" });
+        .json({ msg: "Demat account not found. Please create a Demat account." });
     }
-    if (dematAccount.verificationStatus) {
-      const find =dematAccount.holdings.find((stock)=>stock.stockSymbol==stockSymbol)
 
-console.log(find)
-      dematAccount.holdings.push({
-        stockSymbol,
-        quantity,
-        averagePrice,
-      });
+    if (dematAccount.verificationStatus) {
+      const existingStock = dematAccount.holdings.find((stock) => stock.stockSymbol === stockSymbol);
+
+      if (existingStock) {
+        existingStock.quantity += quantity;
+      } else {
+        dematAccount.holdings.push({
+          stockSymbol,
+          quantity,
+          averagePrice,
+        });
+      }
 
       // Update the balance and add a transaction for the purchase
       const updated = await DematModel.findOneAndUpdate(
@@ -151,63 +172,115 @@ console.log(find)
 
       res
         .status(200)
-        .json({ updated, msg: "Congratulations you have purchase stock" });
+        .json({ updated, msg: "Congratulations, you have purchased the stock." });
     } else {
       return res
         .status(404)
-        .json({ msg: "Your Account is not verified", verify: false });
+        .json({ msg: "Your account is not verified.", verify: false });
     }
   } catch (error) {
-    res.status(500).json({ msg: "Server error" });
+    res.status(500).json({ msg: "Server error." });
+  }
+});
+dematRouter.post("/buy", async (req, res) => {
+  try {
+    const { userID, stockSymbol, quantity, averagePrice } = req.body;
+
+    const dematAccount = await DematModel.findOne({ userID });
+
+    if (!dematAccount) {
+      return res
+        .status(404)
+        .json({ msg: "Demat account not found. Please create a Demat account." });
+    }
+
+    if (dematAccount.verificationStatus) {
+      const existingStock = dematAccount.holdings.find((stock) => stock.stockSymbol === stockSymbol);
+
+      if (existingStock) {
+        existingStock.quantity += quantity;
+      } else {
+        dematAccount.holdings.push({
+          stockSymbol,
+          quantity,
+          averagePrice,
+        });
+      }
+
+      // Update the balance and add a transaction for the purchase
+      const updated = await DematModel.findOneAndUpdate(
+        { userID },
+        dematAccount
+      );
+
+      res
+        .status(200)
+        .json({ updated, msg: "Congratulations, you have purchased the stock." });
+    } else {
+      return res
+        .status(404)
+        .json({ msg: "Your account is not verified.", verify: true });
+    }
+  } catch (error) {
+    res.status(500).json({ msg: "Server error." });
   }
 });
 
 // Sell stocks route
 dematRouter.post("/sell", async (req, res) => {
   try {
-    // Extract the data from the request body
-    const { userID, stockSymbol, quantity, price } = req.body;
+    const { userID, stockSymbol, quantity } = req.body;
+    
 
-    // Find the demat account based on the account number
     const dematAccount = await DematModel.findOne({ userID });
 
     if (!dematAccount) {
-      return res.status(404).json({ error: "Demat account not found" });
+      return res
+        .status(404)
+        .json({ msg: "Demat account not found. Please create a Demat account." });
     }
 
-    // Find the stock holding to sell
-    const holding = dematAccount.holdings.find(
-      (holding) => holding.stockSymbol === stockSymbol
-    );
+    if (dematAccount.verificationStatus) {
+      const existingStock = dematAccount.holdings.find((stock) => stock.stockSymbol === stockSymbol);
 
-    if (!holding || holding.quantity < quantity) {
-      return res.status(400).json({ error: "Insufficient stock quantity" });
+      if (!existingStock) {
+        return res.status(404).json({ msg: "No such stock found in your holdings." });
+      }
+
+      if (existingStock.quantity >= quantity) {
+        existingStock.quantity -= quantity;
+
+        if (existingStock.quantity === 0) {
+          // Remove the stock from holdings
+          dematAccount.holdings = dematAccount.holdings.filter(
+            (stock) => stock.stockSymbol !== stockSymbol
+          );
+        }
+        // quantity=+quantity
+        // const price=+(existingStock.averagePrice)
+        // const totalAmount=+(existingStock.averagePrice*quantity)
+        console.log(existingStock.averagePrice,quantity)
+        dematAccount.transactions.push({quantity,stockSymbol,price:existingStock.averagePrice,totalAmount:existingStock.averagePrice*quantity})
+        // Update the balance and add a transaction for the sale
+        const updated = await DematModel.findOneAndUpdate(
+          { userID },
+          dematAccount
+        );
+
+        res.status(200).json({ updated, msg: "Stock sold successfully." });
+      } else {
+        return res.status(400).json({ msg: "Insufficient quantity to sell." });
+      }
+    } else {
+      return res
+        .status(404)
+        .json({ msg: "Your account is not verified.", verify:true });
     }
-
-    // Update the quantity and average price of the stock holding
-    holding.quantity -= quantity;
-
-    if (holding.quantity === 0) {
-      // Remove the holding if the quantity becomes zero
-      dematAccount.holdings = dematAccount.holdings.filter(
-        (holding) => holding.quantity > 0
-      );
-    }
-
-    // Update the balance and add a transaction for the sale
-    await dematAccount.updateBalanceAndTransaction(
-      "Sell",
-      stockSymbol,
-      quantity,
-      price
-    );
-
-    res.status(200).json(dematAccount);
   } catch (error) {
-    console.error("Error selling stocks:", error);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ msg: "Server error." });
   }
 });
+
 
 module.exports = {
   dematRouter,

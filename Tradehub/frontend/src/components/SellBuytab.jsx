@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Tabs, TabList, TabPanel, TabPanels, Tab } from '@chakra-ui/react';
+import { Tabs, TabList, TabPanel, TabPanels, Tab, Button } from '@chakra-ui/react';
 import { NavLink, useParams } from 'react-router-dom';
 
 function StockComponent() {
@@ -46,26 +46,26 @@ function StockComponent() {
       <TabPanels>
         <TabPanel>
           <h2>Buy Stocks</h2>
-          <input
+          {/* <input
             type="number"
             value={buyValue}
             onChange={handleBuyChange}
             placeholder="Enter quantity"
             disabled
-          />
-          <NavLink to={`/stockbuypage/${symbol}`}><button onClick={handleBuyClick} p="10px" varient={"outline"}>Buy</button></NavLink>
+          /> */}
+          <NavLink to={`/stockbuypage/${symbol}`}><Button color='green' width="200px" onClick={handleBuyClick} p="20px" varient={"outline"}>Buy</Button></NavLink>
         </TabPanel>
 
         <TabPanel>
           <h2>Sell Stocks</h2>
-          <input
+          {/* <input
             type="number"
             value={sellValue}
             onChange={handleSellChange}
             placeholder="Enter quantity"
             disabled
-          />
-         <NavLink to={`/stocksellpage/${symbol}`}><button p="10px" varient={"outline"} onClick={handleSellClick}>Sell</button></NavLink> 
+          /> */}
+         <NavLink  to={`/stocksellpage/${symbol}`}><Button color='green' p="20px" width="200px"  varient={"outline"} onClick={handleSellClick}>Sell</Button></NavLink> 
         </TabPanel>
       </TabPanels>
     </Tabs>

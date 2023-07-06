@@ -10,9 +10,11 @@ import {
   Select,
   Stack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const StockSellingPage = () => {
   const { symbol } = useParams();
@@ -21,8 +23,9 @@ const StockSellingPage = () => {
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState("");
 const navigate=useNavigate()
-  const token = localStorage.getItem("token");
-
+  const toast=useToast()
+const token = Cookies.get("token");
+console.log(token,"token")
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -40,8 +43,38 @@ const selecthandle=(e)=>{
     setSelectedStock(e.target.value)
     const currentprice=stocks.find(stock=>stock.stockSymbol==e.target.value)
     setPrice(currentprice.averagePrice)
-    console.log(price)
+    
 }
+
+
+const handleSell = async(e) => {
+  e.preventDefault();
+  try {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  
+  console.log(`Selling stock: ${selectedStock}`);
+  const res=await axios.post(`${process.env.REACT_APP_BASEURL}/demat/sell`,{stockSymbol:selectedStock,quantity},config)
+  toast({
+    title:"Successfully",
+    description:res.data.msg,
+    status:"success"
+})
+} catch (error) {
+  console.log({stockSymbol:selectedStock,quantity:quantity})
+  console.log(error)
+  toast({
+    title:"error",
+    description:error?.response?.data?.msg,
+    status:"error"
+  })
+  if(error.response.data.verify){
+    navigate("/verify_account")
+  }
+}
+
+  };
   useEffect(() => {
     if(!token){
       navigate("/login")
@@ -51,22 +84,6 @@ const selecthandle=(e)=>{
     getholding();
     
   }, []);
-
-  const handleSell = (e) => {
-    const token = localStorage.getItem("token");
-
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    e.preventDefault();
-    // Handle stock selling logic
-    // Update stock quantities or make API calls
-    console.log(`Selling stock: ${selectedStock}`);
-
-
-    axios.post(`${process.env.BASEURL}/demat/sell`)
-  };
-
   return (
     <>
     {stocks.length > 0?<Container maxW="lg" py={8}>
@@ -84,6 +101,7 @@ const selecthandle=(e)=>{
             value={selectedStock}
             onChange={selecthandle}
           >
+          <option value="">select stock:</option>
             {stocks.map((stock) => (
               <option key={stock.stockSymbol} value={stock.stockSymbol}>
                 {stock.stockSymbol}
