@@ -1,3 +1,5 @@
+![Screenshot (750)](https://github.com/Prashantrathour/stoic-sack-3017/assets/112960345/82cc97ac-7bfb-412d-8a76-fe952cd0e6e9)
+![Uploading Screenshot (756).png…]()
 # Stock Exchange Website
 ![logo](https://github.com/Prashantrathour/stoic-sack-3017/assets/112960345/339f5f1e-0dc7-4479-8bff-3fd0a822daba)
 ### Stock Exchange Website
@@ -56,3 +58,8 @@ The project is built using the following technologies:
 - Chakra UI
 - Redux
 - JWT (JSON Web Tokens)
+
+## Demo images
+![Uploading Screenshot (755).png…]()
+![Uploading Screenshot (754).png…]()
+
