@@ -10,7 +10,7 @@ function Snacks() {
         <Heading fontSize="100px" fontWeight={"1000"}  textOverflow={"revert-layer"}>Your daily dose of financial news.</Heading>
       </Box>
       <Box>
-        <Heading ml="20px" fontSize={"20px"} fontWeight={"400"} textOverflow={"revert-layer"}>
+        <Heading color="#FF4747" ml="20px" fontSize={"20px"} fontWeight={"400"} textOverflow={"revert-layer"}>
         The 3-minute newsletter with fresh takes on the financial news you need to start your day.
         </Heading>
       </Box>
@@ -28,6 +28,7 @@ function Snacks() {
     p="30px"
     bg="transparent"
     borderRadius="full"
+    color="black"
     ml={2}
     borderWidth={2}
     borderColor="gray.400"

@@ -28,6 +28,7 @@ import Cookies from "js-cookie";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading,setLoading]=useState(false )
   const navigate = useNavigate();
   const toast = useToast();
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ export default function Login() {
 
     const getresponse = dispatch(loginuser(data));
     try {
+      setLoading(true)
       const response = await getresponse;
       Cookies.set("token", response.data.token);
 
@@ -59,10 +61,12 @@ export default function Login() {
         duration: 5000,
         isClosable: true,
       });
+      setLoading(false)
       setTimeout(() => {
         navigate("/");
       }, 5000);
     } catch (error) {
+      setLoading(false)
       dispatch(setLoginStatus(false, error.response.data.msg));
       toast({
         title: error.response.data.msg,
@@ -103,7 +107,7 @@ export default function Login() {
           />
         </Flex>
         <Box mx="auto" maxW="100%" padding={"10px"}>
-          <Heading as="h4" size="md" textAlign="center" mb={4}>
+          <Heading as="h4" size="md" textAlign="center" mb={4} >
             Login To Tradehub
           </Heading>
           <FormControl id="email" mb={4}>
@@ -113,6 +117,8 @@ export default function Login() {
               <Input
                 type="email"
                 value={email}
+                placeholder={"Enter your email"}
+                _placeholder={{ opacity: 0.4, color: 'inherit' }}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Flex>
@@ -122,6 +128,8 @@ export default function Login() {
             <Flex align="center">
               <FaLock size={18} color="gray.400" mr={2} />
               <Input
+              placeholder="enter Password"
+              _placeholder={{ opacity: 0.4, color: 'inherit' }}
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -157,6 +165,7 @@ export default function Login() {
             width="full"
             mb={4}
             onClick={handleSubmit}
+            isLoading={isLoading}
           >
             Log In
           </Button>

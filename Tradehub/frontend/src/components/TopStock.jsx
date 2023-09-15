@@ -55,7 +55,7 @@ useEffect(()=>{
       <Text fontSize="2xl" fontWeight="bold" mb="4" textAlign="center">
         ---- Top Popular Stocks ----
       </Text>
-      <Box display="flex" flexDirection="column" alignItems="center">
+      <Box display="flex" flexDirection="column" alignItems="center" color="black">
         {visibleStocks.map((stock) => (
           <Fade key={stock.id} in={true} delay={stock.id * 0.1}>
             <motion.div

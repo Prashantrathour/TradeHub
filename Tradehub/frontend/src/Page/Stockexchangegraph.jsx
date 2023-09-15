@@ -132,7 +132,7 @@ function StockExchangeGraph() {
   const { x, y, isloading, isError, companydata } = useSelector(
     (store) => store.getstockdetailsreducer
   );
-
+console.log(x,y)
   let data = [
     {
       type: "scatter",

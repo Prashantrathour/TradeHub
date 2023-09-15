@@ -7,21 +7,24 @@ export const stock_getddetails = (symbol) => async (dispatch) => {
   dispatch(getstockdetailsRequest());
 
    return  await axios.get(
-      `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${
-        symbol || "AAPL"
-      }&apikey=21Q868YD7GYTKXV0`
+      // `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${
+      //   symbol || "AAPL"
+      // }&apikey=21Q868YD7GYTKXV0`
+      `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&&symbol=${
+           symbol || "AAPL"
+         }&interval=5min&apikey=TR7ML19YBAKL0K4W`
     ).then((response)=>{
       const data = response.data;
       
-  console.log(data)
+  console.log(data,"data")
       let x = [];
       let y = [];
   
-      for (var key in data["Time Series (Daily)"]) {
+      for (var key in data["Time Series (5min)"]) {
         x.push(key);
-        y.push(data["Time Series (Daily)"][key]["1. open"]);
+        y.push(data["Time Series (5min)"][key]["1. open"]);
       }
-      dispatch(getstockdetailsSuccess({x,y,companydata:data["Time Series (Daily)"]}))
+      dispatch(getstockdetailsSuccess({x,y,companydata:data["Time Series (5min)"]}))
     }).catch((error)=>{
         dispatch(getstockdetailsFailure())
     })
