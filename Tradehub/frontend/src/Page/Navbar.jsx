@@ -22,28 +22,40 @@ import {
   MenuItem,
   Image,
   Avatar,
+  Text,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import Cookies from "js-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoginStatus, setToken, setUser } from "../Redux/uselogin/action";
 
 const Navbar = () => {
+  const dispatch=useDispatch()
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isMobile = useBreakpointValue({ base: true, md: false });
   const isTablet = useBreakpointValue({ base: false, md: true });
   const [user, setuser] = useState(Cookies.get("user"));
-
+  const {isLoggedIn} = useSelector((state) => state.loginreducer);
+  console.log(isLoggedIn);
   const logout = () => {
     Cookies.remove("token");
     Cookies.remove("user");
-
+    dispatch(setToken(""))
+    dispatch(setUser(""))
+    dispatch(setLoginStatus(false,""))
     setuser("");
   };
-  const user1 = Cookies.get("user");
-  useEffect(() => {
-    if (user) {
-      setuser(user1);
+  
+  const token=Cookies.get("token")
+  const user1=Cookies.get("user")
+  useEffect(()=>{
+    console.log(token,user)
+    if(token&&user1){
+      dispatch(setToken(token))
+      dispatch(setUser(user))
+      dispatch(setLoginStatus(true,"Login Success"))
     }
-  }, []);
+  },[])
   return (
     <>
       <Box
@@ -77,7 +89,7 @@ const Navbar = () => {
           {!isMobile && (
             <>
               <NavLinks />
-              <AuthButtons logout={logout} user={user} />
+              <AuthButtons logout={logout} user={user} isLoggedIn={isLoggedIn} />
             </>
           )}
           {isMobile && (
@@ -102,7 +114,7 @@ const NavLinks = () => (
   <Flex justifyContent={"space-between"} width={"30%"} m>
     <Menu isLazy>
       <MenuButton as={Button} colorScheme="white">
-        Services
+       <Text textColor={"whiteAlpha.900"}> Services</Text>
       </MenuButton>
       <MenuList color={"gold"} fontWeight={"600"} bg={"black"}>
         <MenuItem
@@ -159,10 +171,10 @@ const NavButton = ({ to, children }) => (
   </Button>
 );
 
-const AuthButtons = ({ user, logout }) => (
+const AuthButtons = ({ user, logout ,isLoggedIn}) => (
   <Box>
     <Flex alignItems="center" boxSizing={"content-box"} margin={"auto"}>
-      {!user ? (
+      {!isLoggedIn ? (
         <NavLink to={"/login"}>
           <Button variant="ghost" colorScheme="white" mr={2}>
             Login

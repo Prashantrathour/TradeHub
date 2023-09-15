@@ -20,7 +20,7 @@ const ArticlePage = ({
   };
 
   return (
-    <Box p={8} maxWidth="800px" margin="0 auto">
+    <Box p={8} maxWidth="800px" margin="0 auto" color="black">
       <Image src={article.urlToImage} alt="Article Image" mb={4} />
 
       <Heading as="h1" size="xl" mb={2}>

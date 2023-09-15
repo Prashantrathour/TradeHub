@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../Page/style/Signup.scss";
-import { useToast } from "@chakra-ui/react";
+import { FormLabel, Input, useToast } from "@chakra-ui/react";
 import { warning } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -117,35 +117,46 @@ export default function Signup() {
               <div className="top">
                 <div className="signup-child">
                   <div className="signup-firstname">
-                    <input
+                    <FormLabel>First name</FormLabel>
+                    <Input
                       type="text"
                       placeholder="First name"
                       value={firstName}
+                      _placeholder={{ color: 'inherit' }}
                       onChange={(e) => setFirstName(e.target.value)}
                     />
                   </div>
                   <div className="signup-lastname">
-                    <input
+                    <FormLabel>Last Name</FormLabel>
+                    <Input
                       type="text"
                       placeholder="Last name"
+                      _placeholder={{ color: 'inherit' }}
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                     />
                   </div>
                 </div>
                 <div className="signup-email">
-                  <input
+                  <FormLabel>Email</FormLabel>
+                  <Input
                     type="text"
                     placeholder="Email address"
                     value={email}
+                    color='teal'
+                    _placeholder={{ color: 'inherit' }}
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="signup-password">
-                  <input
+                  <FormLabel>Password</FormLabel>
+                  <Input
                     type="password"
                     placeholder="Password(min. 10 characters)"
                     value={password}
+                    color='teal'
+    // placeholder='custom placeholder'
+    _placeholder={{ color: 'inherit' }}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
